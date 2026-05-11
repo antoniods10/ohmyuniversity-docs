@@ -34,15 +34,15 @@ delimiting the operational boundaries between **OhMyUniversity!** and the extern
 
 The following table identifies the actors involved in the **OhMyUniversity!** Use Case Model. Actors are divided into primary actors, who directly interact with the system to achieve their goals, and secondary actors, which represent external systems or entities supporting specific functionalities.
 
-| Type      | Actor                        | Description                                                                                                                                 |
-| --------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| Primary   | University Student           | The main user who interacts with the system to manage their career, view schedules, consult educational material, and book campus services. |
-| Secondary | Cineca/Esse3                 | External system queried for the synchronization of the university record book, grades, and tax status.                                      |
-| Secondary | Moodle                       | E-learning platform that provides access to educational content and courses.                                                                |
-| Secondary | Identity Provider (SPID/CIE) | System delegated to secure validation of the student's identity during the authentication phase.                                            |
-| Secondary | Map Provider                 | Provides geolocation services and cartographic information for locations and transport, such as Google Maps or OpenStreetMap.               |
-| Secondary | Canteen Management System    | External entity that exposes daily menus and validates benefits via Tax Code for meal consumption.                                          |
-| Secondary | Partner Companies            | External entities that provide data related to conventions, discounts, and job announcements dedicated to students.                         |
+| Type      | Actor                          | Description                                                                                                                                 |
+| --------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| Primary   | University Student             | The main user who interacts with the system to manage their career, view schedules, consult educational material, and book campus services. |
+| Secondary | Cineca/Esse3                   | External system queried for the synchronization of the university record book, grades, and tax status.                                      |
+| Secondary | Moodle                         | E-learning platform that provides access to educational content and courses.                                                                |
+| Secondary | Identity Provider (SPID / CIE) | System delegated to secure validation of the student's identity during the authentication phase.                                            |
+| Secondary | Map Provider                   | Provides geolocation services and cartographic information for locations and transport, such as Google Maps or OpenStreetMap.               |
+| Secondary | Canteen Management System      | External entity that exposes daily menus and validates benefits via Tax Code for meal consumption.                                          |
+| Secondary | Partner Companies              | External entities that provide data related to conventions, discounts, and job announcements dedicated to students.                         |
 
 ## General Use Case Diagram
 
@@ -79,11 +79,11 @@ The following traceability matrix links each identified Use Case to the correspo
 
 ### UC-01: Authenticate User
 
-| Sezione                   | Contenuto                                                                                                    |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| **Attori**                | **Primary Actor:** Student<br>**Secondary Actor:** Identity Provider (SPID/CIE)                              |
-| **Assunzioni**            | The student has valid SPID or CIE credentials.                                                               |
-| **Condizioni di entrata** | The OhMyUniversity app is open and connected to the internet.<br>The Identity Provider service is reachable. |
+| Sezione                   | Contenuto                                                                                                   |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| **Attori**                | **Primary Actor:** Student • **Secondary Actor:** Identity Provider (SPID / CIE)                            |
+| **Assunzioni**            | The student has valid SPID or CIE credentials.                                                              |
+| **Condizioni di entrata** | The OhMyUniversity app is open and connected to the internet. • The Identity Provider service is reachable. |
 
 | **Flusso degli eventi** | **Student**                                                    | **System**                                                                       |
 | ----------------------- | -------------------------------------------------------------- | -------------------------------------------------------------------------------- |
@@ -105,17 +105,17 @@ The following traceability matrix links each identified Use Case to the correspo
 
 |                           |                                                                                                                               |
 | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| **Attori**                | **Primary Actor:** Student<br>**Secondary Actor:** University Academic Systems (Cineca/Esse3)                                 |
+| **Attori**                | **Primary Actor:** Student • **Secondary Actor:** University Academic Systems (Cineca/Esse3)                                  |
 | **Assunzioni**            | The student’s academic records and grades are correctly registered and accessible on the external University Academic System. |
-| **Condizioni di entrata** | The student is authenticated.<br>The student has an active academic career.                                                   |
+| **Condizioni di entrata** | The student is authenticated. • The student has an active academic career.                                                    |
 
-| **Flusso degli eventi** | **Student**                                            | **System**                                                                                                                                                                    |
-| ----------------------- | ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **1.**                  | The student accesses the **"Academic Career"** module. |                                                                                                                                                                               |
-| **2.**                  |                                                        | The system requests updated academic records from the University Academic System (**<<include>> UC-17 Synchronize Academic Data**).                                           |
-| **3.**                  |                                                        | The University Academic System returns the student transcript, including exams, grades and CFU.                                                                               |
-| **4.**                  |                                                        | The system calculates the arithmetic average, weighted average, projected degree base grade and CFU completion percentage (**<<include>> UC-18 Calculate Academic Metrics**). |
-| **5.**                  |                                                        | The system displays the comprehensive career dashboard, including academic data, calculated metrics and performance charts.                                                   |
+| **Flusso degli eventi** | **Student**                                            | **System**                                                                                                                                                                      |
+| ----------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1.**                  | The student accesses the **"Academic Career"** module. |                                                                                                                                                                                 |
+| **2.**                  |                                                        | The system requests updated academic records from the University Academic System (**`<<include>>` UC-17 Synchronize Academic Data**).                                           |
+| **3.**                  |                                                        | The University Academic System returns the student transcript, including exams, grades and CFU.                                                                                 |
+| **4.**                  |                                                        | The system calculates the arithmetic average, weighted average, projected degree base grade and CFU completion percentage (**`<<include>>` UC-18 Calculate Academic Metrics**). |
+| **5.**                  |                                                        | The system displays the comprehensive career dashboard, including academic data, calculated metrics and performance charts.                                                     |
 
 |                          |                                                                                                                                                                                                                                                  |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -128,9 +128,9 @@ The following traceability matrix links each identified Use Case to the correspo
 
 |                           |                                                                                                                |
 | ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| **Attori**                | **Primary Actor:** Student<br>**Secondary Actor:** University Academic Systems (Cineca/Esse3)                  |
+| **Attori**                | **Primary Actor:** Student • **Secondary Actor:** University Academic Systems (Cineca/Esse3)                   |
 | **Assunzioni**            | The study plan has been submitted, officially approved, and properly recorded in the external academic system. |
-| **Condizioni di entrata** | The student is authenticated.<br>The student has a study plan officially approved by the student registry.     |
+| **Condizioni di entrata** | The student is authenticated. • The student has a study plan officially approved by the student registry.      |
 
 | **Flusso degli eventi** | **Student**                                                 | **System**                                                                                                                   |
 | ----------------------- | ----------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
@@ -151,20 +151,20 @@ The following traceability matrix links each identified Use Case to the correspo
 
 |                           |                                                                                                                                        |
 | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| **Attori**                | **Primary Actor:** Student<br>**Secondary Actor:** University Academic Systems (Cineca/Esse3)                                          |
+| **Attori**                | **Primary Actor:** Student • **Secondary Actor:** University Academic Systems (Cineca/Esse3)                                           |
 | **Assunzioni**            | The exam sessions for the student’s courses have been published and opened for booking by the university staff on the external system. |
-| **Condizioni di entrata** | The student is authenticated.<br>The student is enrolled in the relevant courses.                                                      |
+| **Condizioni di entrata** | The student is authenticated. • The student is enrolled in the relevant courses.                                                       |
 
-| **Flusso degli eventi** | **Student**                                                   | **System**                                                                                                                |
-| ----------------------- | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| **1.**                  | The student navigates to the **"Exam Sessions"** module.      |                                                                                                                           |
-| **2.**                  |                                                               | The system retrieves active sessions from the external academic system (**<<include>> UC-17 Synchronize Academic Data**). |
-| **3.**                  |                                                               | The system presents available dates, times, and classrooms.                                                               |
-| **4.**                  |                                                               | The system highlights the optimal booking sequence.                                                                       |
-| **5.**                  | The student selects an exam session and confirms the booking. |                                                                                                                           |
-| **6.**                  |                                                               | The system forwards the booking request to the external academic system.                                                  |
-| **7.**                  |                                                               | The external academic system registers the booking and returns a confirmation.                                            |
-| **8.**                  |                                                               | The system updates the student's local booked exams list.                                                                 |
+| **Flusso degli eventi** | **Student**                                                   | **System**                                                                                                                  |
+| ----------------------- | ------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| **1.**                  | The student navigates to the **"Exam Sessions"** module.      |                                                                                                                             |
+| **2.**                  |                                                               | The system retrieves active sessions from the external academic system (**`<<include>>` UC-17 Synchronize Academic Data**). |
+| **3.**                  |                                                               | The system presents available dates, times, and classrooms.                                                                 |
+| **4.**                  |                                                               | The system highlights the optimal booking sequence.                                                                         |
+| **5.**                  | The student selects an exam session and confirms the booking. |                                                                                                                             |
+| **6.**                  |                                                               | The system forwards the booking request to the external academic system.                                                    |
+| **7.**                  |                                                               | The external academic system registers the booking and returns a confirmation.                                              |
+| **8.**                  |                                                               | The system updates the student's local booked exams list.                                                                   |
 
 |                          |                                                                                                                                                                                                                                                                                                   |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -179,17 +179,17 @@ The following traceability matrix links each identified Use Case to the correspo
 | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | **Attori**                | **Primary Actor:** Student                                                                                                       |
 | **Assunzioni**            | The university facilities schedules, available classrooms, and capacities are correctly maintained and accessible by the system. |
-| **Condizioni di entrata** | The student is authenticated.<br>The requested time slot is within the allowed booking timeframe.                                |
+| **Condizioni di entrata** | The student is authenticated. • The requested time slot is within the allowed booking timeframe.                                 |
 
-| **Flusso degli eventi** | **Student**                                                                | **System**                                                                                   |
-| ----------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| **1.**                  | The student accesses the **"Classrooms"** module.                          |                                                                                              |
-| **2.**                  | The student filters spaces by building, date, or capacity.                 |                                                                                              |
-| **3.**                  |                                                                            | The system evaluates current occupancy (**<<include>> UC-20 Check Classroom Availability**). |
-| **4.**                  |                                                                            | The system lists available classrooms and their maximum capacity.                            |
-| **5.**                  | The student selects a specific space or seat and confirms the reservation. |                                                                                              |
-| **6.**                  |                                                                            | The system registers the booking and updates the remaining capacity.                         |
-| **7.**                  |                                                                            | The system provides a booking confirmation.                                                  |
+| **Flusso degli eventi** | **Student**                                                                | **System**                                                                                     |
+| ----------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| **1.**                  | The student accesses the **"Classrooms"** module.                          |                                                                                                |
+| **2.**                  | The student filters spaces by building, date, or capacity.                 |                                                                                                |
+| **3.**                  |                                                                            | The system evaluates current occupancy (**`<<include>>` UC-20 Check Classroom Availability**). |
+| **4.**                  |                                                                            | The system lists available classrooms and their maximum capacity.                              |
+| **5.**                  | The student selects a specific space or seat and confirms the reservation. |                                                                                                |
+| **6.**                  |                                                                            | The system registers the booking and updates the remaining capacity.                           |
+| **7.**                  |                                                                            | The system provides a booking confirmation.                                                    |
 
 |                          |                                                                                                                                                                                                              |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -202,18 +202,18 @@ The following traceability matrix links each identified Use Case to the correspo
 
 |                           |                                                                                                                                |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| **Attori**                | **Primary Actor:** Student<br>**Secondary Actor:** University Canteen Service                                                  |
+| **Attori**                | **Primary Actor:** Student • **Secondary Actor:** University Canteen Service                                                   |
 | **Assunzioni**            | The external Canteen Management System is operational, and the daily menus and maximum seating capacity are correctly updated. |
-| **Condizioni di entrata** | The student is authenticated.<br>The Canteen Service has published the daily menu and available time slots.                    |
+| **Condizioni di entrata** | The student is authenticated. • The Canteen Service has published the daily menu and available time slots.                     |
 
-| **Flusso degli eventi** | **Student**                                       | **System**                                                                                                                                                    |
-| ----------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **1.**                  | The student accesses the **"Canteen"** module.    |                                                                                                                                                               |
-| **2.**                  |                                                   | The system displays the daily menu.                                                                                                                           |
-| **3.**                  | The student selects a preferred dining time slot. |                                                                                                                                                               |
-| **4.**                  |                                                   | The system verifies seat capacity (**<<include>> UC-21 Check Canteen Availability**).                                                                         |
-| **5.**                  |                                                   | The system requests the canteen service to apply student discounts or benefits using the student’s Tax Code (**<<include>> UC-22 Validate Canteen Benefit**). |
-| **6.**                  |                                                   | The system finalizes the reservation and issues a QR code or digital receipt.                                                                                 |
+| **Flusso degli eventi** | **Student**                                       | **System**                                                                                                                                                      |
+| ----------------------- | ------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1.**                  | The student accesses the **"Canteen"** module.    |                                                                                                                                                                 |
+| **2.**                  |                                                   | The system displays the daily menu.                                                                                                                             |
+| **3.**                  | The student selects a preferred dining time slot. |                                                                                                                                                                 |
+| **4.**                  |                                                   | The system verifies seat capacity (**`<<include>>` UC-21 Check Canteen Availability**).                                                                         |
+| **5.**                  |                                                   | The system requests the canteen service to apply student discounts or benefits using the student’s Tax Code (**`<<include>>` UC-22 Validate Canteen Benefit**). |
+| **6.**                  |                                                   | The system finalizes the reservation and issues a QR code or digital receipt.                                                                                   |
 
 |                          |                                                                                                                    |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------ |
@@ -226,9 +226,9 @@ The following traceability matrix links each identified Use Case to the correspo
 
 |                           |                                                                                                                    |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| **Attori**                | **Primary Actor:** Student<br>**Secondary Actor:** Map Provider                                                    |
+| **Attori**                | **Primary Actor:** Student • **Secondary Actor:** Map Provider                                                     |
 | **Assunzioni**            | The student’s device has a functional GPS module, and the external Map Provider services are active and reachable. |
-| **Condizioni di entrata** | The student is authenticated.<br>The student has granted location permissions to the application.                  |
+| **Condizioni di entrata** | The student is authenticated. • The student has granted location permissions to the application.                   |
 
 | **Flusso degli eventi** | **Student**                                               | **System**                                                                                                       |
 | ----------------------- | --------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
@@ -252,7 +252,7 @@ The following traceability matrix links each identified Use Case to the correspo
 | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Attori**                | **Primary Actor:** Student                                                                                                                            |
 | **Assunzioni**            | The admission requirements and specific regulations for the Master’s degree programs are accurately digitized and available in the system’s database. |
-| **Condizioni di entrata** | The student is authenticated.<br>The student’s career data is synchronized.<br>Master's degree requirements are available in the system.              |
+| **Condizioni di entrata** | The student is authenticated. • The student’s career data is synchronized. • Master's degree requirements are available in the system.                |
 
 | **Flusso degli eventi** | **Student**                                                                                        | **System**                                                                                                                                              |
 | ----------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -261,7 +261,7 @@ The following traceability matrix links each identified Use Case to the correspo
 | **3.**                  | The student selects a target program.                                                              |                                                                                                                                                         |
 | **4.**                  |                                                                                                    | The system cross-references the program's mandatory requirements, such as specific CFU in specific scientific sectors, with the student's passed exams. |
 | **5.**                  | The student manually checks off any external or pending requirements using interactive checkboxes. |                                                                                                                                                         |
-| **6.**                  |                                                                                                    | The system calculates the overall eligibility percentage (**<<include>> UC-23 Calculate Requirement Completion**).                                      |
+| **6.**                  |                                                                                                    | The system calculates the overall eligibility percentage (**`<<include>>` UC-23 Calculate Requirement Completion**).                                    |
 | **7.**                  |                                                                                                    | The system visually highlights missing requirements and displays the final eligibility status.                                                          |
 
 |                          |                                                                                                                                       |
@@ -277,7 +277,7 @@ The following traceability matrix links each identified Use Case to the correspo
 | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Attori**                | **Primary Actor:** Student                                                                                                                            |
 | **Assunzioni**            | The admission requirements and specific regulations for the Master’s degree programs are accurately digitized and available in the system’s database. |
-| **Condizioni di entrata** | The student is authenticated.<br>The student’s career data is synchronized.<br>Master's degree requirements are available in the system.              |
+| **Condizioni di entrata** | The student is authenticated. • The student’s career data is synchronized. • Master's degree requirements are available in the system.                |
 
 | **Flusso degli eventi** | **Student**                                                                                        | **System**                                                                                                                                              |
 | ----------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -286,7 +286,7 @@ The following traceability matrix links each identified Use Case to the correspo
 | **3.**                  | The student selects a target program.                                                              |                                                                                                                                                         |
 | **4.**                  |                                                                                                    | The system cross-references the program's mandatory requirements, such as specific CFU in specific scientific sectors, with the student's passed exams. |
 | **5.**                  | The student manually checks off any external or pending requirements using interactive checkboxes. |                                                                                                                                                         |
-| **6.**                  |                                                                                                    | The system calculates the overall eligibility percentage (**<<include>> UC-23 Calculate Requirement Completion**).                                      |
+| **6.**                  |                                                                                                    | The system calculates the overall eligibility percentage (**`<<include>>` UC-23 Calculate Requirement Completion**).                                    |
 | **7.**                  |                                                                                                    | The system visually highlights missing requirements and displays the final eligibility status.                                                          |
 
 |                          |                                                                                                                                       |
@@ -300,17 +300,17 @@ The following traceability matrix links each identified Use Case to the correspo
 
 |                           |                                                                                                                                                                          |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Attori**                | **Primary Actor:** Student<br>**Secondary Actor:** Corporate Partner                                                                                                     |
+| **Attori**                | **Primary Actor:** Student • **Secondary Actor:** Corporate Partner                                                                                                      |
 | **Assunzioni**            | The Corporate Partners and University Information System regularly provide active and correctly formatted data regarding news, offers, jobs, discounts, and conventions. |
 | **Condizioni di entrata** | The student is authenticated.                                                                                                                                            |
 
-| **Flusso degli eventi** | **Student**                                              | **System**                                                                                                                                                                        |
-| ----------------------- | -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **1.**                  | The student accesses the **"Extra Noticeboard"** module. |                                                                                                                                                                                   |
-| **2.**                  |                                                          | The system retrieves RSS feeds or API data from the university information systems for news and from Partner Companies for deals and job offers.                                  |
-| **3.**                  |                                                          | The system aggregates the information and presents it in filterable cards, such as **News**, **Jobs**, and **Discounts**.                                                         |
-| **4.**                  | The student clicks on a specific offer or deal.          |                                                                                                                                                                                   |
-| **5.**                  |                                                          | The system shows the details and displays a button to generate any discount code (**<<extend>> UC-25**) or to redirect the student to an external service (**<<extend>> UC-26**). |
+| **Flusso degli eventi** | **Student**                                              | **System**                                                                                                                                                                            |
+| ----------------------- | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1.**                  | The student accesses the **"Extra Noticeboard"** module. |                                                                                                                                                                                       |
+| **2.**                  |                                                          | The system retrieves RSS feeds or API data from the university information systems for news and from Partner Companies for deals and job offers.                                      |
+| **3.**                  |                                                          | The system aggregates the information and presents it in filterable cards, such as **News**, **Jobs**, and **Discounts**.                                                             |
+| **4.**                  | The student clicks on a specific offer or deal.          |                                                                                                                                                                                       |
+| **5.**                  |                                                          | The system shows the details and displays a button to generate any discount code (**`<<extend>>` UC-25**) or to redirect the student to an external service (**`<<extend>>` UC-26**). |
 
 |                          |                                                                                                                                                                                         |
 | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -325,7 +325,7 @@ The following traceability matrix links each identified Use Case to the correspo
 | ------------------------- | --------------------------------------------------------------------------------- |
 | **Attori**                | **Primary Actor:** Student                                                        |
 | **Assunzioni**            | The recipient of the message is a registered user of the OhMyUniversity platform. |
-| **Condizioni di entrata** | The student is authenticated.<br>The student has an active network connection.    |
+| **Condizioni di entrata** | The student is authenticated. • The student has an active network connection.     |
 
 | **Flusso degli eventi** | **Student**                                                                                    | **System**                                                                                                                   |
 | ----------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
