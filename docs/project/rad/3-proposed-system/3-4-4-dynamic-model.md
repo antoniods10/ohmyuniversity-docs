@@ -49,39 +49,46 @@ The selected Statechart Diagrams describe the lifecycle of:
 
 Together, these diagrams provide a dynamic view of the system and help validate the consistency between the Use Case Model and the Object Model.
 
-
 ## User Sequences
 
 ### UC-01 Authenticate User
+
 ![user-sequence-uc1](/diagrams/user-sequences/user-sequence-uc1.webp)
 
 ### UC-02 View Academic Career
+
 ![user-sequence-uc2](/diagrams/user-sequences/user-sequence-uc2.webp)
 
 ### UC-04 Manage Exam Sessions
+
 ![user-sequence-uc4](/diagrams/user-sequences/user-sequence-uc4.webp)
 
 ### UC-09 Manage Classroom Booking
+
 ![user-sequence-uc9](/diagrams/user-sequences/user-sequence-uc9.webp)
 
 ### UC-10 Manage Canteen Services
-![user-sequence-uc10](/diagrams/user-sequences/user-sequence-uc1O.webp)
+
+![user-sequence-uc10](/diagrams/user-sequences/user-sequence-uc10.webp)
 
 ### UC-12 View Master’s Degree Requirements
+
 ![user-sequence-uc12](/diagrams/user-sequences/user-sequence-uc12.webp)
 
 ## Statechart Diagrams
 
 ### Esame Booking
+
 ![Esame-Booking](/diagrams/statecharts/EsameBooking.webp)
 
 ### Meal Order
+
 ![Esame-Booking](/diagrams/statecharts/MealOrder.webp)
 
 ### Partner Organization
+
 ![Esame-Booking](/diagrams/statecharts/PartnerOrganization.webp)
 
 ### User Authentication
+
 ![Esame-Booking](/diagrams/statecharts/MealOrder.webp)
-
-

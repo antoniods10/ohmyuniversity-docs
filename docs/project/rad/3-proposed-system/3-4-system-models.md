@@ -1,26 +1,27 @@
 ---
-title: RAD - 3.4.4 Dynamic Model | OhMyUniversity!
-description: Dynamic model of OhMyUniversity - describing system behavior over time through sequence diagrams and statechart diagrams.
+title: RAD - 3.4 System Models | OhMyUniversity!
+description: System models of OhMyUniversity - formalizing requirements through UML scenarios, use cases, object model, and dynamic model.
 head:
   - - meta
     - property: og:title
-      content: RAD - 3.4.4 Dynamic Model | OhMyUniversity!
+      content: RAD - 3.4 System Models | OhMyUniversity!
   - - meta
     - property: og:description
-      content: Dynamic model of OhMyUniversity - describing system behavior over time through sequence diagrams and statechart diagrams.
+      content: System models of OhMyUniversity! - formalizing requirements through UML scenarios, use cases, object model, and dynamic model.
   - - meta
     - property: og:url
-      content: https://docs.university.ohmyopensource.org/project/rad/3-proposed-system/3-4-4-dynamic-model
+      content: https://docs.university.ohmyopensource.org/project/rad/3-proposed-system/3-4-system-models
   - - meta
     - name: keywords
-      content: ohmyuniversity, rad, dynamic model, uml, sequence diagram, statechart diagram, system behavior, object interactions, state transitions, requirements analysis
+      content: ohmyuniversity, rad, system models, uml, scenarios, use cases, object model, dynamic model, class diagram, requirements analysis, system design
   - - meta
     - name: twitter:title
-      content: RAD - 3.4.4 Dynamic Model | OhMyUniversity!
+      content: RAD - 3.4 System Models | OhMyUniversity!
   - - meta
     - name: twitter:description
-      content: Dynamic model of OhMyUniversity - describing system behavior over time through sequence diagrams and statechart diagrams.
+      content: System models of OhMyUniversity! - formalizing requirements through UML scenarios, use cases, object model, and dynamic model.
 ---
+
 # OhMyUniversity! - RAD: 3.4 System Models
 
 This section represents the technical formalization of the previously described requirements. The purpose of the system models is to bridge the gap between the discursive understanding of the requirements and the technical design, using the standard UML (Unified Modeling Language) to eliminate the ambiguities typical of natural language.
