@@ -28,4 +28,4 @@ The performance requirements define the expected speed and resource efficiency o
 
 - **Response Time (Latency):** The loading of the university student record via the Cineca API must be completed within a maximum time of 2.0 seconds in 95% of requests made under 4G/5G connectivity.
 
-- **Resource Efficiency:** The application must not consume more than 2% battery per hour of continuous active use on mid-range mobile devices from the last 3 years.
+- **Resource Efficiency:** The application should be optimized to limit unnecessary consumption of device resources, including battery, memory, and network usage, especially during prolonged use on mobile devices. 
