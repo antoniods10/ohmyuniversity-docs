@@ -28,7 +28,7 @@ The functional requirements of **OhMyUniversity!** are organized into logical mo
 
 ---
 
-### 3.2.1 Module 1: Career, Didactics, and Student Administration Office (Core Integration)
+### Module 1: Career, Didactics, and Student Administration Office (Core Integration)
 
 | ID       | Requirement                  | Description                                                                                                                                           |
 | -------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -44,7 +44,7 @@ The functional requirements of **OhMyUniversity!** are organized into logical mo
 
 ---
 
-### 3.2.2 Module 2: Access to External University Services
+### Module 2: Access to External University Services
 
 | ID       | Requirement                  | Description                                                                                                                    |
 | -------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
@@ -55,7 +55,7 @@ The functional requirements of **OhMyUniversity!** are organized into logical mo
 
 ---
 
-### 3.2.3 Module 3: Organization and Logistics
+### Module 3: Organization and Logistics
 
 | ID       | Requirement                     | Description                                                                                                           |
 | -------- | ------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
@@ -66,26 +66,31 @@ The functional requirements of **OhMyUniversity!** are organized into logical mo
 | FR-1.3.5 | Attendance Monitoring           | The system must show registered attendances and allow the monitoring of attendance for educational activities.        |
 | FR-1.3.6 | Maps and Transport              | The system must integrate maps for locating university sites and provide information on connected means of transport. |
 | FR-1.3.7 | University Canteen Menu Display | The system must daily show users the menu planned at the university canteen.                                          |
-| FR-1.3.8 | University Canteen Seat Booking | The system must allow students to book a seat in the canteen for a specific time slot.                                |
-| FR-1.3.9 | Canteen Concessions Management  | The system must manage conventions for free meals by entering and validating the user's Fiscal Code.                  |
+| FR-1.3.8 | University Canteen Meal Selection |The system must allow students to select meal items from the daily canteen menu and submit their meal choice to the canteen service.                                |
 
 ---
 
-### 3.2.4 Module 4: Orientation and Future Planning
+### Module 4: Orientation and Future Planning
 
 | ID       | Requirement           | Description                                                                                                                                     |
 | -------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| FR-1.4.1 | Master's Requirements | The system must show the access requirements for Master's degrees and allow the interactive selection of these requirements through checkboxes. |
-| FR-1.4.2 | Eligibility Analysis  | The system must calculate the percentage of completion of the requirements for access to the selected Master's degree.                          |
+| FR-1.4.1 | Master's Requirements | The system must allow students to view the available Master’s degree programmes and consult their admission requirements in a clear and readable format.. |
+| FR-1.4.2 | Requirement Consultation   | The system must present the admission requirements of the selected Master’s degree programme without performing automatic eligibility verification.                        |
 | FR-1.4.3 | Enrollment Guide      | The system must provide support and guides on enrollment procedures and the university's course catalog.                                        |
 
 ---
 
-### 3.2.5 Module 5: Information and Extra Services
+### Module 5: Information and Extra Services
 
 | ID       | Requirement         | Description                                                                                       |
 | -------- | ------------------- | ------------------------------------------------------------------------------------------------- |
 | FR-1.5.1 | News Board          | The system must display official news and notices published by the university.                    |
-| FR-1.5.2 | Agreements and Jobs | The system must show job advertisements, agreements, discounts, and events dedicated to students. |
-| FR-1.5.3 | Quick Access        | The system must allow the configuration of quick links to the most used services and sections.    |
-| FR-1.5.4 | Chat System         | The system must allow textual communication between application users.                            |
+| FR-1.5.2 | Quick Access        | The system must allow the configuration of quick links to the most used services and sections.    |
+| FR-1.5.3 | Chat System         | The system must allow textual communication between application users.                            |
+
+### Module 6: Agreements, Jobs and Partner Services
+
+| ID       | Requirement         | Description                                                                                       |
+| -------- | ------------------- | ------------------------------------------------------------------------------------------------- |
+| FR-1.6.1 | Agreements and Jobs          | The system must show job advertisements, agreements, discounts and events dedicated to students.                    |
+| FR-1.6.2 | Partner Organization Registration         | The system must allow external partner organizations to submit a registration request to participate in the partnership area, subject to validation before publication or activation.    |
