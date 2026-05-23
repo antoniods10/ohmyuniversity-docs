@@ -1,372 +1,226 @@
 ---
-title: OhMyUniversity! - User Personas
+title: RAD - 3.4.1 Scenarios | OhMyUniversity!
+description: Representative scenarios of OhMyUniversity - describing concrete user interactions derived from personas and used to derive the main use cases of the system.
+head:
+  - - meta
+    - property: og:title
+      content: RAD - 3.4.1 Scenarios | OhMyUniversity!
+  - - meta
+    - property: og:description
+      content: Representative scenarios of OhMyUniversity - describing concrete user interactions derived from personas and used to derive the main use cases of the system.
+  - - meta
+    - property: og:url
+      content: https://docs.university.ohmyopensource.org/project/rad/3-proposed-system/3-4-1-scenarios
+  - - meta
+    - name: keywords
+      content: ohmyuniversity, rad, scenarios, user scenarios, requirements analysis, personas, use cases, university app, prospective student, current student, academic career, enrollment, exam booking, classroom booking
+  - - meta
+    - name: twitter:title
+      content: RAD - 3.4.1 Scenarios | OhMyUniversity!
+  - - meta
+    - name: twitter:description
+      content: Representative scenarios of OhMyUniversity - describing concrete user interactions derived from personas and used to derive the main use cases of the system.
 ---
 
-# OhMyUniversity! - User Personas
+## OhMyUniversity! - RAD: 3.4.1 Scenarios
 
-This document defines the primary user personas for the OhMyUniversity! platform. Each persona represents a distinct user archetype derived from research and analysis of the target audience, and is used to guide design and development decisions.
+This section describes representative scenarios derived from the user personas identified for OhMyUniversity!.  
+Each scenario represents a concrete and realistic situation of use, described from the user’s point of view.
 
----
-
-## Macro-Category: Student
-
-### Sub-Category: Prospective Students (Pre-enrollment)
-
----
-
-#### Persona 1 - Paolo Ferretti
-
-![Paolo Ferretti](/personas/paolo.webp)
-
-| Attribute            | Details                                                     |
-| -------------------- | ----------------------------------------------------------- |
-| **Age**              | 19                                                          |
-| **Nationality**      | Italian                                                     |
-| **Gender**           | Male                                                        |
-| **Role**             | Recent high-school graduate, prospective university student |
-| **Location**         | Small town, Central Italy                                   |
-| **Tech Proficiency** | Medium - comfortable with smartphones and social media      |
-
-**Goals**
-
-- Research and enroll in a suitable university course
-- Maintain an active social life during the transition to university
-- Find a university with a vibrant campus community
-
-**Preferences & Motivations**
-
-- Values peer recommendations and social proof when making decisions
-- Enjoys sports and spending time with friends; looks for universities with sports facilities and student associations
-- Prefers visual, mobile-friendly interfaces over dense text
-
-**Pain Points & Challenges**
-
-- Does not own a car and depends on public transport; proximity to transport links or on-campus housing is a key factor
-- Overwhelmed by the complexity and volume of enrollment bureaucracy
-- Unsure how to compare universities and courses effectively
-
-**How OhMyUniversity! Helps**
-
-- Provides clear, aggregated university data (locations, services, campus life) in one place
-- Surfaces transport and housing information alongside academic data
-- Simplifies course comparison with structured, accessible information
+The scenarios are used to understand the application domain, highlight user needs, and support the derivation of the main use cases of the system. Unlike use cases, scenarios are not formal specifications: they describe specific examples of interaction between a user and the system.
 
 ---
 
-#### Persona 2 - Opra Sharma
+### Scenario Overview
 
-![Opra Sharma](/personas/opra.webp)
-
-| Attribute            | Details                                                       |
-| -------------------- | ------------------------------------------------------------- |
-| **Age**              | 21                                                            |
-| **Nationality**      | Indian                                                        |
-| **Gender**           | Female                                                        |
-| **Role**             | International student, preparing for second-year enrollment   |
-| **Location**         | Northern Italy (recently relocated)                           |
-| **Tech Proficiency** | High - experienced with digital platforms and online research |
-
-**Goals**
-
-- Successfully complete enrollment procedures in a foreign university system
-- Find a university that is inclusive and supportive of international students
-- Build a social and academic network in a new country
-
-**Preferences & Motivations**
-
-- Strongly values inclusive environments and cultural diversity on campus
-- Seeks universities with dedicated international student support services
-- Prefers multilingual interfaces and clear documentation
-
-**Pain Points & Challenges**
-
-- Language barrier when navigating Italian bureaucratic and academic systems
-- Difficulty understanding local enrollment requirements and deadlines
-- Limited prior knowledge of the Italian higher education landscape
-
-**How OhMyUniversity! Helps**
-
-- Provides standardized, structured data that is easier to parse regardless of language background
-- Aggregates information on international student services across universities
-- Reduces reliance on scattered, hard-to-find official sources
+| ID | Scenario | Type | Primary Persona | Primary Actor | Main Goal |
+|---|---|---|---|---|---|
+| SC-01 | Compare degree programmes and campus services | Visionary Scenario | Paolo Ferretti | Prospective Student | Choose a suitable university course |
+| SC-02 | Complete guided enrollment as an international student | Visionary Scenario | Opra Sharma | International Prospective Student | Understand enrollment requirements and deadlines |
+| SC-03 | Monitor academic progress and missing exams | Visionary Scenario | Moreno Basile | Current Student | Track academic progress toward graduation |
+| SC-04 | Access university services through a simplified dashboard | Visionary / Evaluation Scenario | Antonello Ruggieri | Current Student | Use university digital services independently |
+| SC-05 | Evaluate master’s degree programmes and financial opportunities | Visionary Scenario | Vittoria Mancini | Prospective Master’s Student | Select a master’s programme considering requirements, scholarships and Erasmus |
+| SC-06 | Book an exam session | Visionary Scenario | Current Student | Current Student | Reserve an available exam session |
+| SC-07 | Access learning material from a single point | Visionary Scenario | Current Student | Current Student | Download slides and PDF course material |
+| SC-08 | Check classroom availability and book a seat | Evaluation Scenario | Current Student | Current Student | Complete a classroom or seat booking quickly |
 
 ---
 
-### Sub-Category: Current Students (Enrolled)
+### SC-01 — Compare degree programmes and campus services
+
+**Type:** Visionary Scenario  
+**Primary Persona:** Paolo Ferretti  
+**Primary Actor:** Prospective Student  
+
+Paolo Ferretti is a recent high-school graduate who wants to choose a suitable university course. He lives in a small town and does not own a car, so he needs to understand not only the academic offer, but also whether the campus is reachable by public transport and whether the university provides useful student services.
+
+Paolo opens OhMyUniversity! from his smartphone and accesses the public orientation area. He searches for bachelor’s degree programmes, filters them by area of interest and location, and opens the details of the most relevant results. The system presents academic information, campus services, transport links and useful enrollment information in a structured and visual way.
+
+Paolo compares two degree programmes, evaluates which one best fits his academic interests and daily life needs, and saves the most interesting option for later consultation.
+
+**Candidate Use Cases:**
+- View Degree Programmes
+- Compare Degree Programmes
+- View Campus Services
+- View Maps and Transport Information
+- Save Programme of Interest
 
 ---
 
-#### Persona 3 - Moreno Basile
+### SC-02 — Complete guided enrollment as an international student
 
-![Moreno Basile](/personas/moreno.webp)
+**Type:** Visionary Scenario  
+**Primary Persona:** Opra Sharma  
+**Primary Actor:** International Prospective Student  
 
-| Attribute            | Details                                          |
-| -------------------- | ------------------------------------------------ |
-| **Age**              | 24                                               |
-| **Nationality**      | Italian                                          |
-| **Gender**           | Male                                             |
-| **Role**             | Enrolled undergraduate student (out-of-schedule) |
-| **Location**         | Southern Italy                                   |
-| **Tech Proficiency** | Medium                                           |
+Opra Sharma is an international student who recently moved to Italy and needs to understand how to complete enrollment in an Italian university system. She is familiar with digital platforms, but she finds Italian academic bureaucracy difficult because of language barriers, unclear deadlines and scattered official information.
 
-**Goals**
+Opra opens OhMyUniversity! and accesses the enrollment guide. She selects the international student profile and the system presents a guided path with the main administrative steps, required documents, deadlines and available support services. Instead of searching across multiple university pages, Opra finds the relevant information in a single structured area.
 
-- Complete his degree and graduate as soon as possible
-- Access academic support resources and tutoring services
-- Reduce administrative friction that slows his academic progress
+She checks the international student services, saves the most important deadlines and identifies the offices or contacts she may need during the enrollment process.
 
-**Preferences & Motivations**
-
-- Values a supportive and inclusive academic environment
-- Relies on academic support services due to documented learning difficulties
-- Motivated by clear milestones and measurable progress
-
-**Pain Points & Challenges**
-
-- Currently out of schedule (_fuori corso_) due to a combination of learning difficulties and lack of adequate support
-- Finds university administrative systems fragmented and difficult to navigate
-- Struggles to identify which support services are available and how to access them
-
-**How OhMyUniversity! Helps**
-
-- Surfaces data on tutoring, disability support, and academic assistance services
-- Provides a unified view of university offerings to help students make informed choices
-- Reduces time spent searching for support resources across multiple portals
+**Candidate Use Cases:**
+- View Enrollment Guide
+- View International Student Services
+- Consult Administrative Documentation
+- Save Academic Deadline
+- View Support Contacts
 
 ---
 
-#### Persona 4 - Antonello Ruggieri
+### SC-03 — Monitor academic progress and missing exams
 
-![Antonello Ruggieri](/personas/antonello.webp)
+**Type:** Visionary Scenario  
+**Primary Persona:** Moreno Basile  
+**Primary Actor:** Current Student  
 
-| Attribute            | Details                                                  |
-| -------------------- | -------------------------------------------------------- |
-| **Age**              | 61                                                       |
-| **Nationality**      | Italian                                                  |
-| **Gender**           | Male                                                     |
-| **Role**             | Retired adult learner pursuing an undergraduate degree   |
-| **Location**         | Central Italy                                            |
-| **Tech Proficiency** | Low - limited experience with digital academic platforms |
+Moreno Basile is an enrolled undergraduate student who is currently out of schedule and wants to understand how far he is from graduation. He feels slowed down by fragmented university systems and needs a clear view of his academic situation, including passed exams, missing exams, CFU and averages.
 
-**Goals**
+Moreno opens OhMyUniversity!, logs in and accesses the Academic Career section. The system retrieves his academic data from the official university systems and presents them in a unified dashboard. Moreno can see his registered exams, grades, acquired CFU, arithmetic average, weighted average and overall progress toward graduation.
 
-- Obtain a university degree for personal growth and intellectual fulfillment
-- Engage meaningfully with academic content despite a non-traditional student profile
-- Navigate university services independently without needing constant assistance
+He then opens the study plan area to identify the exams and activities he still needs to complete. This helps him understand his current position and plan the next steps of his academic path more clearly.
 
-**Preferences & Motivations**
-
-- Strongly values intuitive, accessible, and well-documented digital services
-- Prefers clear language, large text, and step-by-step guidance
-- Motivated by lifelong learning and personal achievement rather than career outcomes
-
-**Pain Points & Challenges**
-
-- Significant gaps in familiarity with modern e-learning platforms, student portals, and digital tools
-- Limited social integration within a student population predominantly composed of much younger peers
-- Risk of digital exclusion if interfaces are not designed with accessibility in mind
-
-**How OhMyUniversity! Helps**
-
-- Presents university data in a structured, readable format with minimal jargon
-- Helps identify universities with strong adult learner or continuing education programs
-- Reduces the need to navigate multiple fragmented official sources
+**Candidate Use Cases:**
+- Authenticate User
+- View Academic Career
+- Synchronize Academic Data
+- Calculate Academic Metrics
+- View Study Plan
+- View Missing Exams
 
 ---
 
-### Sub-Category: Graduate Students (Post-bachelor)
+### SC-04 — Access university services through a simplified dashboard
+
+**Type:** Visionary / Evaluation Scenario  
+**Primary Persona:** Antonello Ruggieri  
+**Primary Actor:** Current Student  
+
+Antonello Ruggieri is a retired adult learner with limited experience using modern academic platforms. He wants to manage his university activities independently, but he risks being excluded if the digital services are too complex or fragmented.
+
+Antonello opens OhMyUniversity! and logs in through a clear and readable interface. After authentication, he reaches a simplified dashboard where the main services are presented with understandable labels and a clean layout. He selects the courses section, opens one of his courses and finds notices, useful links and available learning materials.
+
+Antonello downloads a PDF document without needing to navigate multiple portals or interpret technical messages. The platform allows him to complete a basic academic task independently and with less frustration.
+
+**Candidate Use Cases:**
+- Authenticate User
+- View Dashboard
+- View Courses
+- Access Educational Material
+- Download Educational Material
 
 ---
 
-#### Persona 5 - Vittoria Mancini
+### SC-05 — Evaluate master’s degree programmes and financial opportunities
 
-![Vittoria Mancini](/personas/vittoria.webp)
+**Type:** Visionary Scenario  
+**Primary Persona:** Vittoria Mancini  
+**Primary Actor:** Prospective Master’s Student  
 
-| Attribute            | Details                                                  |
-| -------------------- | -------------------------------------------------------- |
-| **Age**              | 22                                                       |
-| **Nationality**      | Albanian                                                 |
-| **Gender**           | Female                                                   |
-| **Role**             | Recent bachelor's graduate, prospective master's student |
-| **Location**         | Italy (student visa)                                     |
-| **Tech Proficiency** | High                                                     |
+Vittoria Mancini is a recent bachelor’s graduate who wants to enroll in a master’s degree programme in Italy. Since she has limited financial resources and is interested in international opportunities, she needs to compare programmes not only by academic content, but also by admission requirements, scholarships, tuition fees and Erasmus possibilities.
 
-**Goals**
+Vittoria opens OhMyUniversity! and accesses the master’s degree planning area. She browses available master’s programmes and opens the details of those most relevant to her interests. The system presents admission requirements, academic information, financial aid opportunities and Erasmus-related information in a structured way.
 
-- Enroll in a master's degree program with strong research opportunities
-- Participate in an Erasmus+ exchange program abroad
-- Access scholarships or financial aid to support her studies
+Vittoria compares two possible programmes and evaluates which one is more suitable considering both academic goals and economic constraints. This helps her make a more informed decision without relying on scattered institutional documents.
 
-**Preferences & Motivations**
-
-- Values collaborative academic environments and international exposure
-- Actively seeks universities with strong Erasmus+ partnerships and international programs
-- Motivated by academic excellence and future career prospects in Europe
-
-**Pain Points & Challenges**
-
-- Low income and limited financial resources constrain her choice of institution and city
-- Navigating scholarship and financial aid information across multiple institutions is time-consuming and complex
-- As an international student, additional bureaucratic steps complicate the enrollment process
-
-**How OhMyUniversity! Helps**
-
-- Aggregates data on tuition fees, scholarship availability, and financial aid across universities
-- Provides structured information on Erasmus+ partnerships and international agreements
-- Reduces information asymmetry for students without institutional guidance networks
+**Candidate Use Cases:**
+- View Master’s Degree Programmes
+- View Admission Requirements
+- Check Master’s Degree Eligibility
+- Consult Scholarships and Financial Aid
+- View Erasmus Opportunities
+- Compare Master’s Programmes
 
 ---
 
-## Macro-Category: Companies
+### SC-06 — Book an exam session
+
+**Type:** Visionary Scenario  
+**Primary Persona:** Current Student  
+**Primary Actor:** Current Student  
+
+An enrolled student wants to book an exam session without navigating the official university portal separately. After opening OhMyUniversity! and accessing the student dashboard, the student enters the Exam Sessions area and selects a course.
+
+The system shows the available exam sessions with date, time, location, booking deadline and seat availability. The student compares the available options and selects the most suitable session. Before confirming, the system presents a clear summary of the selected exam session.
+
+The student confirms the booking and receives feedback about the result. If the booking is completed successfully, the confirmed exam session becomes visible in the student’s list of bookings.
+
+**Candidate Use Cases:**
+- View Exam Sessions
+- Book Exam Session
+- View Exam Bookings
+- Check Exam Booking Eligibility
+- Optimize Exam Booking Sequence
 
 ---
 
-### Persona 6 - TechNova Solutions
+### SC-07 — Access learning material from a single point
 
-![TechNova Solutions](/personas/technova.webp)
+**Type:** Visionary Scenario  
+**Primary Persona:** Current Student  
+**Primary Actor:** Current Student  
 
-| Attribute            | Details                                                   |
-| -------------------- | --------------------------------------------------------- |
-| **Industry**         | IT and Software Development                               |
-| **Size**             | Medium Enterprise (50-200 employees)                      |
-| **Target Audience**  | Students and recent graduates in STEM fields              |
-| **Role**             | Corporate partner for recruitment and events (Recruiting) |
-| **Location**         | Headquartered in Milan, with Smart Working policies       |
-| **Tech Proficiency** | High - uses digital platforms and ATS daily               |
+A current student needs to download slides and PDF files for one of their courses. Instead of manually searching through different platforms, the student opens OhMyUniversity! and accesses the Courses section from the main dashboard.
 
-**Goals**
+The system shows the list of courses associated with the student. After selecting a course, the student sees the available learning materials, including slides, PDF files and useful links. The student selects the required document and opens or downloads it directly from the unified interface.
 
-- Post job advertisements to recruit new talent directly from the university talent pool
-- Increase corporate brand awareness among students by hosting hackathons, seminars, and events
-- Streamline the hiring process by creating a direct channel with graduating students
+This scenario reduces the need to move between multiple university platforms and gives the student a single access point for course-related material.
 
-**Preferences & Motivations**
-
-- Values direct, measurable, and efficient communication channels with the student population
-- Motivated by acquiring top talent to quickly fill junior technical positions
-- Prefers intuitive digital portals with clean interfaces that do not require long onboarding processes
-
-**Pain Points & Challenges**
-
-- Reaching students organically is complex due to the fragmentation of old university portals (obsolete career services, physical bulletin boards)
-- Lack of a centralized platform to effectively promote corporate events to the right target audience
-- Bureaucratic hurdles and slowness when trying to establish agreements and agile connections with various departments
-
-**How OhMyUniversity! Helps**
-
-- Acts as a direct and frictionless connection hub between the company and the student body
-- Provides a dedicated area within the "Agreements/Partnerships" section where TechNova can easily and independently publish job offers and event announcements
-- Offers a unified digital ecosystem, ensuring targeted visibility and bypassing dispersive institutional websites
+**Candidate Use Cases:**
+- View Courses
+- Access Moodle Material
+- View Educational Material
+- Download Educational Material
 
 ---
 
-### Persona 7 - Studium Café & Books
+### SC-08 — Check classroom availability and book a seat
 
-![Studium Café](/personas/studiumcafe.webp)
+**Type:** Evaluation Scenario  
+**Primary Persona:** Current Student  
+**Primary Actor:** Current Student  
 
-| Attribute            | Details                                                    |
-| -------------------- | ---------------------------------------------------------- |
-| **Industry**         | Catering and Retail (Bookstore/Café)                       |
-| **Size**             | Small Business (Local commercial activity)                 |
-| **Target Audience**  | All enrolled university students                           |
-| **Role**             | Partnered local merchant                                   |
-| **Location**         | City center (in the immediate vicinity of the university)  |
-| **Tech Proficiency** | Medium - comfortable with basic POS systems, apps, and web |
+A current student needs to find an available classroom or reserve a seat for study activities. The student opens OhMyUniversity! and accesses the Classroom Booking area from the dashboard.
 
-**Goals**
+The system displays available buildings, classrooms and time slots. The student selects a building and a preferred time slot, then checks which classrooms or seats are available. After choosing an available option, the system presents a simple booking summary.
 
-- Attract university students to the venue during study hours, lunch breaks, or post-lecture
-- Offer dedicated discounts and loyalty programs easily accessible by the student community
-- Increase foot traffic in the store and grow recurring revenue
+The student confirms the reservation and receives confirmation. This scenario is also useful for evaluating the usability of the system, because the task should be completed quickly and without requiring external instructions.
 
-**Preferences & Motivations**
-
-- Values local community engagement and building loyalty among both commuting and resident students
-- Prefers digital solutions that allow for fast and seamless payment and discount verification at the counter
-- Motivated by the desire to support university life by offering welcoming spaces and advantageous promotions
-
-**Pain Points & Challenges**
-
-- Manually verifying student status (checking old paper records or faded physical badges) wastes time during peak hours
-- Struggles to effectively advertise promotions without having to print flyers or spend on expensive local marketing
-- Legacy paper coupon systems are inconvenient to track and manage for the staff
-
-**How OhMyUniversity! Helps**
-
-- Integrates the business into the "Agreements/Discounts" section, allowing offers to be showcased directly to certified students via the app
-- Provides maximum visibility to the venue by placing it within the digital tool that students use daily
-- Simplifies discount validation, making it an immediate operation through a digital interface rather than manual checking
-
-## Macro-Category: Academic Staff
-
-### Persona 8 - Prof. Alessandro Conti
-
-![Alessandro Conti](/personas/alessandro.webp)
-
-| Attribute            | Details                                             |
-| -------------------- | --------------------------------------------------- |
-| **Age**              | 55                                                  |
-| **Nationality**      | Italian                                             |
-| **Gender**           | Male                                                |
-| **Role**             | Full Professor                                      |
-| **Location**         | Central Italy                                       |
-| **Tech Proficiency** | Medium - relies on university IT for complex setups |
-
-**Goals**
-
-- Distribute teaching materials (Slides/PDFs) efficiently to all students enrolled in his courses
-- Maintain a structured and organized calendar for his lectures and office hours
-- Ensure that students can easily find his contact information without sending repetitive emails
-
-**Preferences & Motivations**
-
-- Highly values academic rigor and student preparation
-- Prefers centralized institutional systems (like Moodle) for course management but wishes they were more accessible
-- Wants administrative and basic communication tasks to take up as little time as possible to focus on research
-
-**Pain Points & Challenges**
-
-- Constantly receives emails from students asking for basic information (lecture schedules, where to find slides, professor's email) that is already scattered across various web pages
-- Finds legacy university systems fragmented, which creates confusion for both him and the students
-
-**How OhMyUniversity! Helps**
-
-- Makes his contact details automatically and clearly visible in the "Staff Directory," drastically reducing basic information requests
-- Acts as a bridge to the "Slides/PDFs" section and the calendar, so students have immediate and unified access to his materials and schedules
+**Candidate Use Cases:**
+- View Classroom Availability
+- View Classroom Timetable
+- Book Classroom Seat
+- Confirm Classroom Booking
 
 ---
 
-#### Persona 9 - Dr. Elena Romano
+## Traceability from Personas to Scenarios
 
-![Elena Romano](/personas/elena.webp)
-
-| Attribute            | Details                                      |
-| -------------------- | -------------------------------------------- |
-| **Age**              | 32                                           |
-| **Nationality**      | Italian                                      |
-| **Gender**           | Female                                       |
-| **Role**             | Adjunct Professor and Post-Doc Researcher    |
-| **Location**         | Southern Italy                               |
-| **Tech Proficiency** | High - regularly uses new productivity tools |
-
-**Goals**
-
-- Manage exam sessions and related communications in a fluid and modern way
-- Check available classrooms and logistics quickly before her lectures or to organize extra seminars
-- Have a clear overview of her academic agenda integrated into a single tool
-
-**Preferences & Motivations**
-
-- Appreciates efficiency, automation, and real-time data access
-- Highly motivated by interactive teaching and precise instructional organization
-- Prefers "mobile-first" solutions for managing her activities, often moving between classrooms, labs, and departments
-
-**Pain Points & Challenges**
-
-- Consulting and managing classroom bookings across different university buildings using current systems is an unnecessarily complex operation
-- Having to constantly navigate between Esse3 bureaucracy for exams and Moodle for teaching slows down her workflow
-
-**How OhMyUniversity! Helps**
-
-- Provides centralized access to Moodle and Esse3 services, simplifying her daily academic interaction
-- Offers immediate visualizations in the "Classrooms" section (bookings and PDF schedules) and the calendar, greatly simplifying her logistical and educational planning
+| Persona | Main Need | Scenario |
+|---|---|---|
+| Paolo Ferretti | Compare courses, campus life and transport options | SC-01 |
+| Opra Sharma | Understand enrollment procedures and international support | SC-02 |
+| Moreno Basile | Monitor academic progress and reduce administrative friction | SC-03 |
+| Antonello Ruggieri | Use digital university services independently | SC-04 |
+| Vittoria Mancini | Evaluate master’s programmes, scholarships and Erasmus opportunities | SC-05 |
+| Current Student | Manage exams, materials and logistics | SC-06, SC-07, SC-08 |
