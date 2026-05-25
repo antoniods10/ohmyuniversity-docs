@@ -10,7 +10,7 @@ head:
       content: Strategy for persistent data management in OhMyUniversity!, detailing the use of PostgreSQL and Redis Cache to ensure data integrity, performance, and fault tolerance.
   - - meta
     - property: og:url
-      content: https://docs.university.ohmyopensource.org/project/sdd/3-proposed-system/3-4-persistent-data-management
+      content: https://docs.university.ohmyopensource.org/project/sdd/3-proposed-software-architecture/3-4-persistent-data-management
   - - meta
     - name: keywords
       content: ohmyuniversity, sdd, persistent data, postgresql, redis, caching, fault tolerance, agile, database, gdpr, ttl

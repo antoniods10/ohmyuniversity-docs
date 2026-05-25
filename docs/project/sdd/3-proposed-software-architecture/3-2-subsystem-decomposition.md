@@ -10,7 +10,7 @@ head:
       content: Decomposing the OhMyUniversity! system into manageable, highly cohesive, and loosely coupled subsystems based on a multi-layer architecture.
   - - meta
     - property: og:url
-      content: https://docs.university.ohmyopensource.org/project/sdd/3-proposed-system/3-2-subsystem-decomposition
+      content: https://docs.university.ohmyopensource.org/project/sdd/3-proposed-software-architecture/3-2-subsystem-decomposition
   - - meta
     - name: keywords
       content: ohmyuniversity, sdd, subsystem decomposition, architecture, high cohesion, low coupling, api gateway, three-tier, layers
@@ -48,3 +48,9 @@ Furthermore, we applied key software engineering heuristics, such as grouping by
 | **7** | **Partner Convention Service**     | Application Logic  | Manages partner organization registrations and provides private dashboards for corporate partners to publish conventions and job offers.                           | `PartnerOrganization`, `NoticeboardItem` (Promos)                                                                                                                                                        | FR-1.6.1, FR-1.6.2                                                |
 | **8** | **External Integration Gateway**   | External Services  | Acts as a Proxy/Adapter orchestrating API calls to third-party systems (Cineca, Moodle, Map Providers) and ensuring proper data formatting.                        | (All _Adapter / Facade_ classes for external systems)                                                                                                                                                    | FR-1.2.1, FR-1.2.2, FR-1.2.3                                      |
 | **9** | **Data & Caching Layer**           | Caching & Database | Manages local data persistence and caching (e.g., Redis) to provide high fault tolerance in the absence of network connectivity.                                   | (All _Entity_ classes saved locally / Cache)                                                                                                                                                             | _N/A (Satisfies NFR-3.3.2 Reliability and NFR-3.3.3 Performance)_ |
+
+## UML Component Diagram
+
+The following component diagram illustrates the static structure of the system at _design-time_, highlighting the main software modules, their interfaces, and their mutual dependencies.
+
+![Component Diagram OhMyUniversity](/diagrams/ComponentDiagramUML.webp)
