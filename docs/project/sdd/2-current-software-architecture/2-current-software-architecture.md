@@ -102,11 +102,3 @@ The system explicitly targets the identified gaps:
 | No strategic planning   | Application layer can implement degree planning features |
 | Fragmented information  | Middleware normalizes data from multiple systems         |
 | Portal-only access      | Available on web, mobile, and desktop platforms          |
-
----
-
-## References
-
-- [ESSE3/Cineca Unimol API Documentation](docs/api/cineca/api-unimol/overview.md) - Complete list of available services and endpoints
-- [RAD 2 - Current System Analysis](../rad/2-current-system/2-current-system.md) - Detailed competitive analysis and gap identification
-- [RAD 3.1 - Proposed System Overview](../rad/3-proposed-system/3-1-overview.md) - OhMyUniversity! design principles and architecture vision

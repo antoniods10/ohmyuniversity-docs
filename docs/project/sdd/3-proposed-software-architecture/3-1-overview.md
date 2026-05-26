@@ -34,28 +34,26 @@ The proposed architecture translates the functional and non-functional requireme
 
 ## Table of Contents
 
-### [3.2 Subsystem Decomposition](./3-2-subsystem-decomposition.md)
+### 3.2 Subsystem Decomposition
 
 Describes the decomposition of the OhMyUniversity! system into manageable, highly cohesive, and loosely coupled subsystems. This section details the nine primary subsystems, their responsibilities, domain classes, and how they are distributed across the multi-tier architecture. Includes the Component Diagram showing static module relationships.
 
-### [3.3 Hardware-Software Mapping](./3-3-hardware-software-mapping.md)
+### 3.3 Hardware-Software Mapping
 
 Presents the mapping between the logical software architecture and the physical hardware deployment. Details the distribution of components across different nodes, network interactions, and deployment topology.
 
-### [3.4 Persistent Data Management](./3-4-persistent-data-management.md)
+### 3.4 Persistent Data Management
 
 Covers the data persistence strategy, database schema design, data models, and caching mechanisms. Explains how data is stored, retrieved, and cached to ensure system reliability and performance.
 
-### [3.5 Access Control and Security](./3-5-access-control-and-security.md)
+### 3.5 Access Control and Security
 
 Describes the security architecture, including authentication mechanisms (SPID/CIE integration), authorization strategies (RBAC), data protection measures, and secure communication protocols.
 
-### [3.6 Global Software Control](./3-6-global-software-control.md)
+### 3.6 Global Software Control
 
 Details the global control flow, system initialization, shutdown procedures, error handling, and exception management strategies across the entire system.
 
-### [3.7 Boundary Conditions](./3-7-boundary-conditions.md)
+### 3.7 Boundary Conditions
 
 Addresses the system's behavior at boundary conditions, including startup, shutdown, restart, and recovery procedures. Covers how the system handles edge cases and failure scenarios.
-
----
