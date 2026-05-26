@@ -10,7 +10,7 @@ head:
       content: Learn how to contribute to OhMyUniversity, including repository workflow, coding conventions, commit guidelines, and improvement areas.
   - - meta
     - property: og:url
-      content: https://docs.university.ohmyopensource.org/contributing
+      content: https://docs.university.ohmyopensource.org/getting-started/contribute
   - - meta
     - name: keywords
       content: ohmyuniversity contribute, open source contribution guide, api documentation contributions, github workflow guide, commit conventions, documentation standards, dataset contributions

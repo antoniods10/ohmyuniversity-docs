@@ -1,10 +1,10 @@
 ---
-title: SDD - 1. Introduction | OhMyUniversity!
+title: SDD - 1.5 Introduction | OhMyUniversity!
 description: Overview and table of contents for the introduction section of the Software Design Document, covering system purpose, design goals, definitions, and references.
 head:
   - - meta
     - property: og:title
-      content: SDD - 1. Introduction | OhMyUniversity!
+      content: SDD - 1.5 Introduction | OhMyUniversity!
   - - meta
     - property: og:description
       content: Overview and table of contents for the introduction section of the SDD.
@@ -16,13 +16,13 @@ head:
       content: ohmyuniversity, sdd, introduction, purpose, design goals, definitions, references
   - - meta
     - name: twitter:title
-      content: SDD - 1. Introduction | OhMyUniversity!
+      content: SDD - 1.5 Introduction | OhMyUniversity!
   - - meta
     - name: twitter:description
       content: Overview and table of contents for the introduction section of the SDD.
 ---
 
-# OhMyUniversity! - SDD: 1. Introduction
+# OhMyUniversity! - SDD: 1.5 Introduction
 
 This section provides the foundational context for the entire Software Design Document. It establishes the system's purpose, articulates measurable design goals, clarifies terminology, and provides references for further consultation.
 

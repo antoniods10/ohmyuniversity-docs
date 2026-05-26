@@ -10,7 +10,7 @@ head:
       content: Discover how the OhMyUniversity API layer unifies multiple educational data sources into a consistent and normalized interface.
   - - meta
     - property: og:url
-      content: https://docs.university.ohmyopensource.org/api/overview
+      content: https://docs.university.ohmyopensource.org/getting-started/api
   - - meta
     - name: keywords
       content: ohmyuniversity api, university data aggregation api, cineca mim european data portal, unified education api, student data normalization, university api gateway

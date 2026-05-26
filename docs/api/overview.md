@@ -10,7 +10,7 @@ head:
       content: Explore the full list of API sources integrated in OhMyUniversity!, with details on endpoints, authentication, rate limits, and current status.
   - - meta
     - property: og:url
-      content: https://docs.university.ohmyopensource.org/components/badge
+      content: https://docs.university.ohmyopensource.org/api/overview
   - - meta
     - name: keywords
       content: ohmyuniversity api, university api index, cineca ans api, mim open data api, european data portal api, student data api, university integration, api documentation

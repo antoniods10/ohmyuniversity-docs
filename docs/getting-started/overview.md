@@ -10,7 +10,7 @@ head:
       content: Learn about OhMyUniversity, an open source platform that unifies fragmented university data from MIM, CINECA, and European sources.
   - - meta
     - property: og:url
-      content: https://docs.university.ohmyopensource.org/overview
+      content: https://docs.university.ohmyopensource.org/getting-started/overview
   - - meta
     - name: keywords
       content: ohmyuniversity overview, open source university platform, italian education data, university data aggregation, mim cineca european data portal, education data api, student data platform

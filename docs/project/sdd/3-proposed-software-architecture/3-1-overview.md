@@ -1,10 +1,10 @@
 ---
-title: SDD - 3. Proposed Software Architecture | OhMyUniversity!
+title: SDD - 3.1 Proposed Software Architecture | OhMyUniversity!
 description: Overview and table of contents for the proposed software architecture section, covering subsystem decomposition, hardware-software mapping, data management, security, and boundary conditions.
 head:
   - - meta
     - property: og:title
-      content: SDD - 3. Proposed Software Architecture | OhMyUniversity!
+      content: SDD - 3.1 Proposed Software Architecture | OhMyUniversity!
   - - meta
     - property: og:description
       content: Overview and table of contents for the proposed software architecture section.
@@ -16,7 +16,7 @@ head:
       content: ohmyuniversity, sdd, software architecture, design, subsystems, layers
   - - meta
     - name: twitter:title
-      content: SDD - 3. Proposed Software Architecture | OhMyUniversity!
+      content: SDD - 3.1 Proposed Software Architecture | OhMyUniversity!
   - - meta
     - name: twitter:description
       content: Overview and table of contents for the proposed software architecture section.
