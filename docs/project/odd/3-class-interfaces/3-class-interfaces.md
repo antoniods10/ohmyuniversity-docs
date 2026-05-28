@@ -10,7 +10,7 @@ head:
       content: Specification of the public interfaces, dependencies, and contracts of the solution objects for the OhMyUniversity! system, focusing on Sprint 1 modules and the api-core microservice.
   - - meta
     - property: og:url
-      content: https://docs.university.ohmyopensource.org/project/odd/3-class-interfaces/overview
+      content: https://docs.university.ohmyopensource.org/project/odd/3-class-interfaces/3-class-interfaces
   - - meta
     - name: keywords
       content: ohmyuniversity, odd, class interfaces, controllers, services, dto, adapter pattern, cineca, api-core
