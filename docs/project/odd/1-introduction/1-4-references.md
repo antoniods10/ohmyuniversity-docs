@@ -30,24 +30,24 @@ This section lists the internal project documents, programming style guides, and
 
 ## Internal Documents
 
-| Document                                 | Location            | Purpose                                                                                                                           |
-| ---------------------------------------- | ------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| **Requirements Analysis Document (RAD)** | `docs/project/rad/` | Definisce i requisiti funzionali a cui l'implementazione del codice deve rimanere pienamente allineata.                           |
-| **System Design Document (SDD)**         | `docs/project/sdd/` | Delinea i sottosistemi ad alto livello, le strategie di persistenza e l'architettura globale su cui si basa il design ad oggetti. |
+| Document                                 | Location            | Purpose                                                                                                                            |
+| ---------------------------------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| **Requirements Analysis Document (RAD)** | `docs/project/rad/` | Defines the functional requirements that the code implementation must remain fully aligned with.                                   |
+| **System Design Document (SDD)**         | `docs/project/sdd/` | Outlines the high-level subsystems, persistence strategies, and overall architecture on which the object-oriented design is based. |
 
 ---
 
 ## Development Standards & Style Guides
 
-Le implementazioni del codice, le regole di formattazione e le pratiche di documentazione delle interfacce si basano rigorosamente sui seguenti standard:
+Code implementations, formatting rules, and interface documentation practices are strictly based on the following standards:
 
-| Standard / Guide                  | Applicability                                                  | Reference                                                                                |
-| --------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| **Google Java Style Guide**       | Linee guida strutturali per Java                               | https://google.github.io/styleguide/javaguide.html                                       |
-| **Google TypeScript Style Guide** | Linee guida strutturali per TypeScript                         | https://google.github.io/styleguide/tsguide.html                                         |
-| **Google JavaScript Style Guide** | Linee guida strutturali per JavaScript                         | https://google.github.io/styleguide/jsguide.html                                         |
-| **Google HTML/CSS Style Guide**   | Linee guida strutturali per HTML/CSS                           | https://google.github.io/styleguide/htmlcssguide.html                                    |
-| **Effective Dart**                | Linee guida strutturali per Dart                               | https://dart.dev/effective-dart                                                          |
-| **GDPR (Article 32)**             | Conformità di sicurezza per l'implementazione del TTL in cache | Implementazione del Time-To-Live nei flussi dei dati esterni per limitare l'esposizione. |
+| Standard / Guide                  | Applicability                                       | Reference                                                             |
+| --------------------------------- | --------------------------------------------------- | --------------------------------------------------------------------- |
+| **Google Java Style Guide**       | Structural guidelines for Java                      | https://google.github.io/styleguide/javaguide.html                    |
+| **Google TypeScript Style Guide** | Structural guidelines for TypeScript                | https://google.github.io/styleguide/tsguide.html                      |
+| **Google JavaScript Style Guide** | Structural guidelines for JavaScript                | https://google.github.io/styleguide/jsguide.html                      |
+| **Google HTML/CSS Style Guide**   | Structural guidelines for HTML/CSS                  | https://google.github.io/styleguide/htmlcssguide.html                 |
+| **Effective Dart**                | Structural guidelines for Dart                      | https://dart.dev/effective-dart                                       |
+| **GDPR (Article 32)**             | Security compliance for TTL implementation in cache | Time-To-Live implementation in external data flows to limit exposure. |
 
 ---
