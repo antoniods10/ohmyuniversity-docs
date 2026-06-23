@@ -72,11 +72,13 @@ The functional requirements of **OhMyUniversity!** are organized into logical mo
 
 ### Module 4: Orientation and Future Planning
 
-| ID       | Requirement              | Description                                                                                                                                               |
-| -------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| FR-1.4.1 | Master's Requirements    | The system must allow students to view the available Master’s degree programmes and consult their admission requirements in a clear and readable format.. |
-| FR-1.4.2 | Requirement Consultation | The system must present the admission requirements of the selected Master’s degree programme without performing automatic eligibility verification.       |
-| FR-1.4.3 | Enrollment Guide         | The system must provide support and guides on enrollment procedures and the university's course catalog.                                                  |
+| ID       | Requirement                    | Description |
+| -------- | ------------------------------ | ----------- |
+| FR-1.4.1 | Master's Degree Programmes     | The system must allow students to view available Master’s degree programmes and consult their main information, study paths, and admission requirements in a clear and readable format. |
+| FR-1.4.2 | Master's Requirements Consultation | The system must present the admission requirements of the selected Master’s degree programme without performing automatic eligibility verification. |
+| FR-1.4.3 | Calls and Opportunities        | The system must allow students to consult calls, public notices, competitions, and other official opportunities related to academic or professional development. |
+| FR-1.4.4 | Job Opportunities              | The system must allow students and graduates to consult job opportunities, career-related information, and useful references for entering the labour market. |
+| FR-1.4.5 | Official Source Redirection    | The system must redirect users to official university, institutional, ministerial, regional, national, or public-administration sources when applications, enrollments, job procedures, calls, or competitions must be completed outside the platform. The system does not act as a private recruiting platform, social job network, or LinkedIn-like service. |
 
 ---
 
