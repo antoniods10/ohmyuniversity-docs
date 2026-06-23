@@ -153,66 +153,81 @@ Vittoria compares two possible programmes and evaluates which one is more suitab
 
 ---
 
-### SC-06 — Book an exam session
+### SC-06 — Publish job offers and corporate events
 
 **Type:** Visionary Scenario  
-**Primary Persona:** Current Student  
-**Primary Actor:** Current Student  
+**Primary Persona:** TechNova Solutions  
+**Primary Actor:** Corporate Partner  
 
-An enrolled student wants to book an exam session without navigating the official university portal separately. After opening OhMyUniversity! and accessing the student dashboard, the student enters the Exam Sessions area and selects a course.
+TechNova Solutions is a medium-sized IT company that wants to reach university students and recent STEM graduates more effectively. The company currently struggles to promote job opportunities, hackathons and seminars because university communication channels are fragmented across old portals, physical boards and slow administrative procedures.
 
-The system shows the available exam sessions with date, time, location, booking deadline and seat availability. The student compares the available options and selects the most suitable session. Before confirming, the system presents a clear summary of the selected exam session.
+A TechNova representative accesses the OhMyUniversity! partner area and opens the Agreements and Partnerships section. From there, the company can publish a junior job offer, specify the target audience, describe the required skills and indicate the application channel. The same area also allows TechNova to publish a corporate event, such as a seminar or hackathon, making it visible to students interested in technology and software development.
 
-The student confirms the booking and receives feedback about the result. If the booking is completed successfully, the confirmed exam session becomes visible in the student’s list of bookings.
+Students can then discover the job offer or event directly inside the application, without having to search across external websites or disconnected university channels. In this way, OhMyUniversity! becomes a direct connection hub between companies and the university student community.
 
 **Candidate Use Cases:**
-- View Exam Sessions
-- Book Exam Session
-- View Exam Bookings
-- Check Exam Booking Eligibility
-- Optimize Exam Booking Sequence
+- UC-19 — Register Partner Organization
+- UC-20 — View Agreements, Jobs and Conventions
 
 ---
 
-### SC-07 — Access learning material from a single point
+### SC-07 — Promote student discounts and validate student status
 
 **Type:** Visionary Scenario  
-**Primary Persona:** Current Student  
-**Primary Actor:** Current Student  
+**Primary Persona:** Studium Café & Books  
+**Primary Actor:** Partnered Local Merchant  
 
-A current student needs to download slides and PDF files for one of their courses. Instead of manually searching through different platforms, the student opens OhMyUniversity! and accesses the Courses section from the main dashboard.
+Studium Café & Books is a local bookstore and café near the university. The business wants to attract students during study hours, lunch breaks and after lectures by offering dedicated discounts and loyalty initiatives. However, manually verifying student status at the counter is slow, especially during peak hours, and paper coupons are difficult to manage.
 
-The system shows the list of courses associated with the student. After selecting a course, the student sees the available learning materials, including slides, PDF files and useful links. The student selects the required document and opens or downloads it directly from the unified interface.
+The merchant accesses the OhMyUniversity! partner area and creates a student discount for the café or bookstore. The offer is published in the Agreements and Discounts section, where certified students can discover it directly from the app. A student who wants to use the promotion opens OhMyUniversity!, shows the digital student badge or a generated discount code, and the merchant verifies the student status through a simple digital interaction.
 
-This scenario reduces the need to move between multiple university platforms and gives the student a single access point for course-related material.
+The discount is applied quickly, without checking paper documents or managing printed coupons. This improves the experience for both the student and the merchant, while giving the local business direct visibility inside the digital ecosystem used by the university community.
+
 
 **Candidate Use Cases:**
-- View Courses
-- Access Moodle Material
-- View Educational Material
-- Download Educational Material
+- UC-19 — Register Partner Organization
+- UC-20 — View Agreements, Jobs and Conventions
+- UC-06 — Use Digital Badge
 
 ---
 
-### SC-08 — Check classroom availability and book a seat
+### SC-08 — Make teaching information and materials easier to access
 
-**Type:** Evaluation Scenario  
-**Primary Persona:** Current Student  
-**Primary Actor:** Current Student  
+**Type:** Visionary Scenario  
+**Primary Persona:** Prof. Alessandro Conti  
+**Primary Actor:** Academic / Lecturer  
 
-A current student needs to find an available classroom or reserve a seat for study activities. The student opens OhMyUniversity! and accesses the Classroom Booking area from the dashboard.
+Prof. Alessandro Conti is a full professor who wants students to access teaching information without repeatedly asking for basic details by email. His contact information, lecture schedules and teaching materials are often distributed across different university pages and platforms, creating confusion for students and additional communication overhead for him.
 
-The system displays available buildings, classrooms and time slots. The student selects a building and a preferred time slot, then checks which classrooms or seats are available. After choosing an available option, the system presents a simple booking summary.
+Through OhMyUniversity!, the professor’s contact details are made clearly visible in the Staff Directory. Students can find his institutional email, office hours and course-related information from a single access point. The platform also connects students to the Slides/PDFs section and to the academic calendar, so they can quickly retrieve teaching materials and lecture information related to his courses.
 
-The student confirms the reservation and receives confirmation. This scenario is also useful for evaluating the usability of the system, because the task should be completed quickly and without requiring external instructions.
+This reduces repetitive requests and helps students access the information they need without navigating multiple fragmented systems. For the professor, OhMyUniversity! becomes a support tool that centralizes basic academic communication and allows him to focus more on teaching and research activities.
+
 
 **Candidate Use Cases:**
-- View Classroom Availability
-- View Classroom Timetable
-- Book Classroom Seat
-- Confirm Classroom Booking
+- UC-07 — Access External University Services
+- UC-08 — View and Download Didactic Material
+- UC-18 — Manage Integrated Calendar
 
 ---
+
+### SC-09 — Manage academic agenda, exam sessions and classroom logistics
+
+**Type:** Visionary Scenario  
+**Primary Persona:** Dr. Elena Romano  
+**Primary Actor:** Academic / Lecturer  
+
+Dr. Elena Romano is an adjunct professor and post-doc researcher who often moves between classrooms, laboratories and departments. She needs to manage her academic agenda, check classroom logistics and coordinate exam-related activities without constantly switching between different university platforms.
+
+Elena opens OhMyUniversity! from her smartphone and accesses her academic dashboard. From there, she checks her teaching calendar, upcoming lectures, office hours and scheduled academic commitments. When she needs to organize an extra seminar or verify a classroom before a lecture, she opens the Classrooms section and checks available rooms, PDF schedules and related logistical information.
+
+She can also access links to external university services such as Moodle and Esse3 from the same environment, reducing the time spent moving between separate systems. In this way, OhMyUniversity! supports her daily academic organization and gives her a clearer overview of teaching, exam and classroom-related activities.
+
+**Candidate Use Cases:**
+- UC-04 — Manage Exam Sessions
+- UC-07 — Access External University Services
+- UC-09 — Manage Classroom Booking
+- UC-18 — Manage Integrated Calendar
 
 ## Traceability from Personas to Scenarios
 
@@ -223,4 +238,7 @@ The student confirms the reservation and receives confirmation. This scenario is
 | Moreno Basile | Monitor academic progress and reduce administrative friction | SC-03 |
 | Antonello Ruggieri | Use digital university services independently | SC-04 |
 | Vittoria Mancini | Evaluate master’s programmes, scholarships and Erasmus opportunities | SC-05 |
-| Current Student | Manage exams, materials and logistics | SC-06, SC-07, SC-08 |
+| TechNova Solutions | Promote job offers and corporate events to students | SC-06 |
+| Studium Café & Books | Publish discounts and validate student status quickly | SC-07 |
+| Prof. Alessandro Conti | Make teaching information and materials easier to access | SC-08 |
+| Dr. Elena Romano | Manage academic agenda, exam sessions and classroom logistics | SC-09 |
