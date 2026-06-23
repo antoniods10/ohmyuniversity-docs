@@ -48,6 +48,10 @@ export const projectSidebar: DefaultTheme.SidebarMulti = {
           link: `${PROJECT_DOCS.BASE_URL}/testing/${COMMON_LINKS.OVERVIEW}`,
         },
         {
+          text: 'Quality Plan',
+          link: `${PROJECT_DOCS.BASE_URL}/quality-plan/${COMMON_LINKS.OVERVIEW}`,
+        },
+        {
           text: 'User Manual',
           link: `${PROJECT_DOCS.BASE_URL}/user-manual/${COMMON_LINKS.OVERVIEW}`,
         },
@@ -434,6 +438,44 @@ export const projectSidebar: DefaultTheme.SidebarMulti = {
         {
           text: 'Performance Tests',
           link: `${PROJECT_DOCS.BASE_URL}/testing/performance-tests`,
+        },
+      ],
+    },
+  ],
+
+  // ================================
+  // QUALITY PLAN
+  // ================================
+  '/project/quality-plan/': [
+    backToProjectDocs,
+    {
+      text: 'Quality Plan',
+      items: [
+        {
+          text: 'Overview',
+          link: `${PROJECT_DOCS.BASE_URL}/quality-plan/${COMMON_LINKS.OVERVIEW}`,
+        },
+      ],
+    },
+    {
+      text: 'Plan Details',
+      collapsed: false,
+      items: [
+        {
+          text: 'Quality Goals',
+          link: `${PROJECT_DOCS.BASE_URL}/quality-plan/quality-goals`,
+        },
+        {
+          text: 'Process Description',
+          link: `${PROJECT_DOCS.BASE_URL}/quality-plan/process-description`,
+        },
+        {
+          text: 'Product Plans',
+          link: `${PROJECT_DOCS.BASE_URL}/quality-plan/product-plans`,
+        },
+        {
+          text: 'Risk Management',
+          link: `${PROJECT_DOCS.BASE_URL}/quality-plan/risk-management`,
         },
       ],
     },

@@ -74,6 +74,10 @@ export const nav: DefaultTheme.NavItem[] = [
             link: `${PROJECT_DOCS.BASE_URL}/testing/test-plan`,
           },
           {
+            text: 'Quality Plan',
+            link: `${PROJECT_DOCS.BASE_URL}/quality-plan/${COMMON_LINKS.OVERVIEW}`,
+          },
+          {
             text: 'User Manual',
             link: `${PROJECT_DOCS.BASE_URL}/user-manual/${COMMON_LINKS.OVERVIEW}`,
           },
