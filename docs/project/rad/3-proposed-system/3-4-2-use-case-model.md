@@ -81,28 +81,42 @@ The following traceability matrix links each identified Use Case to the correspo
 
 ### UC-01: Authenticate User
 
-| Section | Content |
-| ------- | ------- |
-| **Actors** | **Primary Actor:** Student • **Secondary Actor:** University Authentication System / Identity Provider |
-| **Assumptions** | The student already owns valid university credentials or supported digital identity credentials. • The external authentication service is reachable. • The authenticated account is authorized to access OhMyUniversity. |
-| **Entry Conditions** | The OhMyUniversity app is open and connected to the internet. • The Identity Provider service is reachable. |
+| Section              | Content                                                                                                                                                                                                                                                                              |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Actors**           | **Primary Actor:** Student / Partner User • **Secondary Actors:** OhMyUniversity Authentication Service, University Authentication System, SPID/CIE Identity Provider                                                                                                                |
+| **Assumptions**      | The user owns valid university credentials, supported digital identity credentials, or partner credentials. • The selected university is supported by OhMyUniversity. • The authentication services are reachable. • The authenticated account is authorized to access the platform. |
+| **Entry Conditions** | The OhMyUniversity app is open and connected to the internet. • The login page is available. • The user has not yet started an authenticated session.                                                                                                                                |
 
-| **Event Flow** | **Student** | **System** |
-| -------------- | ----------- | ---------- |
-| 1. | The student selects the login option. | |
-| 2. | | The system redirects the student to the University Authentication System / Identity Provider. |
-| 3. | The student enters their university credentials or supported digital identity credentials. | |
-| 4. | | The external authentication service validates the credentials. |
-| 5. | | The external authentication service returns an authorization token. |
-| 6. | | The system validates the token. |
-| 7. | | The system loads the corresponding user profile. |
-| 8. | | The system initializes a secure user session. |
-| 9. | | The system redirects the authenticated student to the main dashboard. |
+| **Event Flow** | **User**                                                                                         | **System**                                                                                              |
+| -------------- | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
+| 1.             | The user opens the login page inside the OhMyUniversity application.                             |                                                                                                         |
+| 2.             | The user selects the access mode: university login, SPID/CIE login, or partner login.            |                                                                                                         |
+| 3.             | If the user chooses university login, the user selects their university from the available list. |                                                                                                         |
+| 4.             |                                                                                                  | The system enables the credential fields according to the selected university.                          |
+| 5.             | The user enters their university credentials.                                                    |                                                                                                         |
+| 6.             |                                                                                                  | The system sends the credentials to the authentication service associated with the selected university. |
+| 7.             |                                                                                                  | The authentication service validates the credentials and returns an authorization response.             |
+| 8.             |                                                                                                  | The system validates the received response and loads the corresponding user profile.                    |
+| 9.             |                                                                                                  | The system initializes a secure user session.                                                           |
+| 10.            |                                                                                                  | The system redirects the authenticated user to the main dashboard.                                      |
 
-| Section | Content |
-| ------- | ------- |
-| **Exceptions** | **No connection:** The system warns the user and prevents the login from starting. • **Incorrect credentials or cancellation:** The Identity Provider returns an error; the system returns the user to the initial login screen with an error message. • **Identity Provider unreachable:** The system advises the user to try again later. |
-| **Exit Conditions** | The student is securely authenticated with an active session. • The system has loaded the user profile associated with the authenticated account. |
+| **Alternative Flows**   | **User**                                                  | **System**                                                                                                                             |
+| ----------------------- | --------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| **A1 - SPID/CIE login** | The user selects the SPID or CIE access option.           |                                                                                                                                        |
+| 1.                      |                                                           | The system starts the authentication flow with the selected digital identity provider.                                                 |
+| 2.                      | The user completes the authentication using SPID or CIE.  |                                                                                                                                        |
+| 3.                      |                                                           | The identity provider returns an authentication result.                                                                                |
+| 4.                      |                                                           | The system validates the result, loads the user profile, initializes the session and redirects the user to the main dashboard.         |
+| **A2 - Partner login**  | The partner user selects the partner access option.       |                                                                                                                                        |
+| 1.                      | The partner user enters the required partner credentials. |                                                                                                                                        |
+| 2.                      |                                                           | The system validates the partner credentials.                                                                                          |
+| 3.                      |                                                           | If the credentials are valid, the system initializes a secure partner session and redirects the user to the partner area or dashboard. |
+
+| Section             | Content                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Exceptions**      | **No connection:** The system warns the user and prevents the login from starting. • **University not selected:** The system keeps the credential fields disabled or shows a validation message. • **Unsupported university:** The system informs the user that the selected university is not currently available. • **Incorrect credentials:** The system rejects the login and shows an error message. • **SPID/CIE cancellation or failure:** The system returns the user to the login page and displays an error message. • **Partner credentials not valid:** The system denies access and shows an authentication error. • **Authentication service unreachable:** The system advises the user to try again later. |
+| **Exit Conditions** | The user is securely authenticated with an active session. • The system has loaded the profile associated with the authenticated account. • The user is redirected to the correct area of the application according to their access type.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+
 
 <br>
 
