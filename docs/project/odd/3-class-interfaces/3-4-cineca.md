@@ -208,3 +208,25 @@ This layer acts as an _Adapter_ towards the outside. It isolates the rest of the
   - `annoIscrizione: Integer` - Year of enrollment
   - `annoCorrente: Integer` - Current academic year
   - `statoCodStudente: String` - Academic status code
+
+---
+
+## Updated Cineca Integration Scope
+
+The current Cineca/Esse3 integration is broader than the initial login, transcript, averages, study plan, and exam-session flow.
+
+The implemented integration also covers:
+
+- bookable exam sessions;
+- existing bookings from the student record book;
+- exam history;
+- teaching questionnaires;
+- tuition-fee status;
+- digital badge data;
+- student profile data;
+- student profile photo;
+- general career information;
+- suggested exams or suggested exam-session planning data.
+
+The `cineca` package must continue to isolate external Cineca/Esse3 response formats from controllers and frontend clients. Upper layers should receive internal DTOs and controlled exceptions instead of raw external payloads or low-level external errors.
+

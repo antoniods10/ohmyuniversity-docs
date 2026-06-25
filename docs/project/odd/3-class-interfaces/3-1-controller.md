@@ -28,7 +28,7 @@ This package contains the _Solution Objects_ responsible for exposing REST APIs 
 
 **Class: AuthController**
 
-- **Mapping:** `@RestController @RequestMapping("/api/auth")`
+- **Mapping:** `@RestController @RequestMapping("/api/v1/auth")`
 - **Description:** Authentication controller for OhMyUniversity! exposing public endpoints for login, token refresh, and logout. All endpoints are publicly accessible — authentication is delegated to Cineca ESSE3 or refresh-token validation, not Spring Security.
 - **Dependencies:** `AuthService` (injected via constructor).
 - **Operations:**
@@ -62,7 +62,7 @@ This package contains the _Solution Objects_ responsible for exposing REST APIs 
 
 **Class: CarrieraController**
 
-- **Mapping:** `@RestController @RequestMapping("/api/carriera")`
+- **Mapping:** `@RestController @RequestMapping("/api/v1/carriera")`
 - **Description:** Controller responsible for exposing all student career-related APIs. This layer is a thin orchestration layer: extracts identity from JWT (OmuPrincipal), delegates business logic to CarrieraService, and maps Cineca failures into HTTP responses. **Important architectural note:** All data is fetched in real-time from Cineca ESSE3; no academic data is persisted in this service.
 - **Dependencies:** `CarrieraService` (injected via constructor), `OmuPrincipal` (from security context).
 - **Operations:**
@@ -122,3 +122,27 @@ This package contains the _Solution Objects_ responsible for exposing REST APIs 
       - `404 Not Found` - No badge associated with student
       - `401 Unauthorized` - Cineca session expired or JWT invalid
       - `503 Service Unavailable` - Cineca service unreachable
+
+---
+
+## Additional Backend Controllers
+
+The current backend implementation also includes additional controllers that must be considered part of the backend interface design.
+
+### API Core Controllers
+
+- **CalendarController** - exposes `/api/v1/calendar` endpoints for personal calendar events and university event import.
+- **EmailController** - exposes `/api/v1/email` endpoints for institutional email authentication, inbox consultation, message details, and message sending.
+- **ExternalServicesController** - exposes `/api/v1/university/external-services` for university service links and external portal metadata.
+
+### API Fetcher Controllers
+
+- **TimetableController** - exposes `/api/v1/fetcher/timetables` for timetable-related data.
+- **StatisticheController** - exposes `/api/statistiche` endpoints for university statistics.
+- **OrdineProfessionaleController** - exposes `/api/ordini-professionali` endpoints for professional-register information.
+- **JobTriggerController** - exposes `/api/jobs/{jobName}/run` for manual execution of configured fetcher jobs.
+
+### Gateway Route Boundaries
+
+The API Gateway exposes public routes to Web and Mobile clients and forwards them to the internal backend services. Public routes use the `/v1/...` prefix, while internal Spring Boot controllers use `/api/v1/...`.
+

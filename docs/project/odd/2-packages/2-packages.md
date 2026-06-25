@@ -144,15 +144,18 @@ Current structure:
 
 ```text
 shared
-├── components
-├── constants
-├── directives
-├── types
-├── ui
-└── utils
++-- components
++-- constants
++-- data
++-- directives
++-- icons
++-- types
++-- utils
 ```
 
-The `shared` package is responsible for common UI elements, constants, directives, types, and utility functions.
+The `shared` package is responsible for common UI elements, constants, directives, types, data, icons, and utility functions.
+
+The `data` package contains mock and static datasets used by dashboard and public features, while the `icons` package contains reusable custom icon components.
 
 This package must remain generic. It should not contain business logic specific to a single feature.
 
@@ -220,27 +223,31 @@ Current structure:
 
 ```text
 dashboard
-├── application
-│   ├── facades
-│   └── usecases
-├── domain
-│   ├── models
-│   └── repositories
-├── infrastructure
-│   └── api
-└── presentation
-    ├── components
-    ├── layout
-    ├── pages
-    └── state
++-- application
+|   +-- facades
+|   +-- mappers
+|   +-- usecases
++-- domain
+|   +-- models
+|   +-- repositories
++-- infrastructure
+|   +-- api
++-- presentation
+|   +-- layout
+|   +-- pages
+|   +-- widgets
++-- services
 ```
 
 This package is partially organized into application, domain, infrastructure, and presentation layers.
 
-The `presentation` layer contains the dashboard pages, layout, UI components, and state structure.
-The `application` layer is used to coordinate dashboard-related operations.
+The `dashboard` feature contains the protected student area and includes the main delivered Web flows: career, exam sessions, calendar, timetable, portals, secretariat, profile, and university contacts.
+
+The `presentation` layer contains the dashboard pages, layout components, and widgets.
+The `application` layer is used to coordinate dashboard-related operations and includes mappers for transforming data into presentation-ready structures.
 The `domain` layer contains the main dashboard abstractions.
 The `infrastructure` layer is prepared for communication with backend APIs.
+The `services` package contains feature-level services used by the dashboard area.
 
 
 ### Orientation Feature Package
@@ -251,15 +258,18 @@ Current structure:
 
 ```text
 orientation
-├── domain
-│   └── models
-└── presentation
-    ├── components
-    └── pages
++-- application
+|   +-- state
++-- domain
+|   +-- models
++-- presentation
+    +-- components
+    +-- pages
 ```
 
 This package is partially implemented.
 
+The `application/state` package manages the local state of the orientation flow.
 The `presentation` layer contains the pages and components used to display orientation content.
 The `domain` layer contains the basic models used by this feature.
 
@@ -306,6 +316,8 @@ Feature packages can use reusable elements from `shared` and application-wide el
 The `shared` package must remain independent from specific business features.
 
 The `core` package provides global infrastructure and should not depend on feature-specific packages.
+
+Route protection is handled by guards in the `core/guards` package, such as `authGuard` and `carrieraGuard`. HTTP authentication concerns are centralized in `core/interceptors`, which avoids duplicating token-handling logic inside feature components.
 
 Inside partially layered features, the dependency direction is:
 
@@ -373,14 +385,20 @@ Current structure:
 
 ```text
 core
-├── constants
-├── error
-└── usecases
++-- config
++-- constants
++-- error
++-- network
++-- usecases
 ```
+
+The `config` package contains reusable core-level configuration.
 
 The `constants` package contains application-wide constants.
 
 The `error` package contains common error and failure abstractions used by the application.
+
+The `network` package contains shared networking utilities used by data sources and repositories.
 
 The `usecases` package contains generic use case structures shared by different features.
 
@@ -395,8 +413,11 @@ Current structure:
 
 ```text
 shared
-└── widgets
++-- mocks
++-- widgets
 ```
+
+The `mocks` package contains reusable mock data used by presentation and development flows.
 
 The `widgets` package contains common interface components used in different areas of the mobile application.
 
@@ -411,19 +432,23 @@ Current structure:
 
 ```text
 features
-├── academic_career
-├── auth
-├── aziende
-├── chat
-├── didattica
-├── explore
-├── home
-├── notifiche
-├── onboarding
-├── orientamento
-├── preferiti
-├── services
-└── splash
++-- academics
++-- academic_career
++-- auth
++-- calendar
++-- chat
++-- companies
++-- email
++-- explore
++-- favorites
++-- home
++-- notifications
++-- onboarding
++-- orientation
++-- profile
++-- services
++-- splash
++-- timetable
 ```
 
 Each feature package groups the code related to a specific area of the mobile application.
@@ -431,36 +456,40 @@ Each feature package groups the code related to a specific area of the mobile ap
 At the current stage, some features are partially implemented with a complete layered structure, while others are mainly organized around presentation-level pages and widgets.
 
 
-### Academic Career Feature Package
+### Academics Feature Package
 
-The `academic_career` feature contains the mobile structure for the student academic career area.
+The `academics` feature contains the main mobile implementation for academic career, exams, study plan, appeals, statistics, and student-administration data.
 
 Current structure:
 
 ```text
-academic_career
-├── data
-│   ├── datasources
-│   ├── models
-│   └── repositories
-├── domain
-│   ├── entities
-│   ├── repositories
-│   └── usecases
-└── presentation
-    ├── pages
-    ├── providers
-    └── widgets
+academics
++-- data
+|   +-- datasources
+|   +-- mocks
+|   +-- models
+|   +-- repositories
++-- domain
+|   +-- entities
+|   +-- exceptions
+|   +-- repositories
+|   +-- services
+|   +-- usecases
++-- presentation
+    +-- pages
+    +-- providers
+    +-- utils
+    +-- views
+    +-- widgets
 ```
 
-This package is partially implemented according to a Clean Architecture-style organization.
+This feature follows a layered organization based on `data`, `domain`, and `presentation`.
 
-The `domain` layer contains the central academic-career abstractions and repository contracts.
+The `data` layer contains technical access to backend APIs, mock data, models, and repository implementations.
 
-The `data` layer contains the technical structures used to retrieve and map academic-career data.
+The `domain` layer contains entities, repository contracts, exceptions, domain services, and use cases.
 
-The `presentation` layer contains the pages, providers, and widgets used to display academic-career information in the mobile interface.
-
+The `presentation` layer contains pages, providers, utilities, views, and widgets used to display academic information and exam-session flows.
 
 ### Auth Feature Package
 
@@ -490,6 +519,59 @@ The `domain` layer contains authentication-related abstractions and repository c
 The `data` layer contains the technical structures used to retrieve and manage authentication data.
 
 The `presentation` layer contains the pages and providers used to manage the authentication flow in the mobile interface.
+
+### Calendar Feature Package
+
+The `calendar` feature manages the integrated calendar flow.
+
+Current structure:
+
+```text
+calendar
++-- data
+|   +-- datasources
+|   +-- models
+|   +-- repositories
++-- domain
+|   +-- entities
+|   +-- exceptions
+|   +-- repositories
+|   +-- usecases
++-- presentation
+    +-- pages
+    +-- providers
+    +-- widgets
+```
+
+This feature separates remote or local data access, domain entities, use cases, providers, pages, and widgets.
+
+
+### Services Feature Package
+
+The `services` feature manages the mobile portals flow and external university services.
+
+Current structure:
+
+```text
+services
++-- data
+|   +-- datasources
+|   +-- models
+|   +-- repositories
++-- domain
+|   +-- entities
+|   +-- exceptions
+|   +-- repositories
+|   +-- usecases
++-- presentation
+    +-- data
+    +-- models
+    +-- pages
+    +-- providers
+```
+
+This feature contains data sources, models, repositories, domain entities, use cases, providers, pages, and presentation-specific data for university portals and external service access.
+
 
 ### Home Feature Package
 
@@ -534,20 +616,26 @@ Together, these packages support the first user interaction with the mobile app 
 
 ### Orientation Feature Package
 
-The `orientamento` feature contains the mobile structure for orientation-related content.
+The `orientation` feature contains the mobile orientation experience.
 
 Current structure:
 
 ```text
-orientamento
-└── presentation
-    ├── pages
-    └── widgets
+orientation
++-- data
++-- domain
+|   +-- entities
+|   +-- services
++-- presentation
+    +-- pages
+    +-- providers
+    +-- utils
+    +-- widgets
 ```
 
-This package is currently implemented mainly at presentation level.
+This feature contains domain entities, scoring services, providers, topic pages, utility logic, and widgets used by the mobile orientation flow.
 
-It groups the pages and widgets used to present orientation information in the mobile application.
+The `email`, `profile`, and `timetable` features are also organized with `data`, `domain`, and `presentation` layers. They support institutional email access, student profile visualization, and class timetable consultation.
 
 
 ### Presentation-Level Feature Packages
@@ -558,16 +646,17 @@ Current packages:
 
 ```text
 features
-├── aziende
-├── chat
-├── didattica
-├── explore
-├── notifiche
-├── preferiti
-└── services
++-- companies
++-- chat
++-- explore
++-- favorites
++-- home
++-- notifications
++-- onboarding
++-- splash
 ```
 
-These packages contain the initial structure for additional mobile areas of the application.
+These packages contain presentation-oriented or initial structures for additional mobile areas of the application.
 
 Their role is to keep each user-facing section separated from the others, avoiding a single large and unstructured mobile module.
 
@@ -615,193 +704,72 @@ This organization keeps the Flutter mobile frontend modular, separates UI code f
 
 ## Java Spring Boot Backend Packages
 
-The Java Spring Boot backend is organized under the `org.ohmyopensource.ohmyuniversity.core` package.
+The Java Spring Boot backend is organized into multiple coordinated repositories rather than a single backend package.
 
-The current backend structure separates REST API exposure, application logic, domain persistence, data transfer objects, configuration, and external Cineca/Esse3 integration.
-
-Current high-level structure:
+Current high-level backend structure:
 
 ```text
-org.ohmyopensource.ohmyuniversity.core
-├── cineca
-├── config
-├── controller
-├── domain
-│   ├── entity
-│   └── repository
-├── dto
-└── service
+Backend
++-- ohmyuniversity-api-gateway
++-- ohmyuniversity-api-core
++-- ohmyuniversity-api-fetcher
++-- ohmyuniversity-infra
 ```
 
-The backend also contains resource-level packages used for application configuration and database migration management.
+The `ohmyuniversity-api-gateway` repository is the public entry point for Web and Mobile clients. It contains gateway configuration, security filters, CORS configuration, and route definitions. Its responsibility is to expose public API routes and forward requests to the correct backend service.
 
-Current resource structure:
+The `ohmyuniversity-api-core` repository contains the main application logic of OhMyUniversity!. It includes authentication, JWT management, Cineca/Esse3 integration, academic-career APIs, calendar management, institutional email access, external university services, DTOs, services, configuration, domain entities, repositories, and database migrations.
 
-```text
-src/main/resources
-├── db
-│   └── migration
-└── application configuration files
-```
+The `ohmyuniversity-api-fetcher` repository contains jobs and APIs for external data retrieval. It manages timetable data, university statistics, professional-register information, related DTOs, services, domain entities, repositories, and scheduled or batch-oriented data collection logic.
 
-### Controller Package
-The `controller` package contains the REST entry points exposed by the backend.
+The `ohmyuniversity-infra` repository contains operational infrastructure for the backend, including Docker configuration, monitoring configuration, deployment scripts, rollback scripts, and Terraform files.
 
-Current structure:
-
-```text
-controller
-```
-
-This package is responsible for receiving HTTP requests from frontend clients and returning HTTP responses.
-
-Controllers do not contain persistence logic or direct external system access. Their role is to expose backend APIs and delegate application operations to the service layer.
-
-At the current stage, this package is already present and partially implements authentication and academic-career API access.
-
-
-### Service Package
-The `service` package contains the application logic of the backend.
-
-Current structure:
-
-```text
-service
-```
-
-This package coordinates the main backend operations, such as authentication, token management, and academic-career data handling.
-
-Services can use domain repositories, DTOs, configuration elements, and integration packages. They act as the coordination layer between REST controllers, persistence, and external systems.
-
-At the current stage, this package is already present and partially implements the authentication flow and the first academic-career operations.
-
-
-### Domain Package
-The `domain` package contains the persistent domain area of the backend.
-
-Current structure:
-
-```text
-domain
-├── entity
-└── repository
-```
-
-The `entity` package contains the persistent business objects managed directly by the backend.
-
-The `repository` package contains the persistence access layer used to read and write backend-managed data.
-
-This package is responsible for data that belongs to OhMyUniversity and is stored by the system, such as user-related and university-connection information.
-
-At the current stage, this package is already present and focused on the backend-managed identity and connection domain.
-
-
-### DTO Package
-
-The `dto` package contains the objects used to exchange data through REST APIs.
-
-Current structure:
-
-```text
-dto
-```
-
-This package is responsible for request and response structures exchanged between the backend and frontend clients.
-
-DTOs are used to avoid exposing internal domain structures directly and to provide frontend-oriented representations of backend and external university data.
-
-At the current stage, this package is already present and contains DTOs for authentication and academic-career related operations.
-
-### Configuration Package
-
-The `config` package contains backend configuration and security-related elements.
-
-Current structure:
-
-```text
-config
-```
-
-This package is responsible for application configuration, security configuration, JWT authentication support, and university-related configuration data.
-
-Configuration elements are shared across multiple backend packages and support the correct execution of controllers, services, and integration logic.
-
-At the current stage, this package is already present and supports authentication, security, environment configuration, and university registry configuration.
-
-### Cineca Integration Package
-
-The `cineca` package contains the backend integration layer for Cineca/Esse3.
-
-Current structure:
-
-```text
-cineca
-```
-
-This package isolates communication with the external university system.
-
-Its role is to keep external API access separated from controllers and domain logic. Backend services use this package when they need to retrieve or manage university-related data coming from Cineca/Esse3.
-
-At the current stage, this package is already present and partially implements login/session handling and academic-career data retrieval from the external university system.
-
-### Database Migration Resources
-
-Database migrations are organized under the `db/migration` resource directory.
-
-Current structure:
-
-```text
-src/main/resources
-└── db
-    └── migration
-```
-
-This directory contains the versioned database migration files used to create and evolve the backend database schema.
-
-Its role is to keep database structure changes reproducible and aligned with the backend domain persistence layer.
-
-At the current stage, the migration structure is already present and supports the persistence of backend-managed user and university-connection data.
-
+At the current stage, the backend components relevant to the selected deliverable are therefore distributed across gateway routing, core application logic, fetcher data retrieval, and infrastructure configuration.
 
 ### Backend Package Dependencies
-The backend follows a layered dependency direction.
 
-The main dependency direction is:
+The backend follows a service-oriented dependency direction.
+
+At system level, Web and Mobile clients communicate with the backend through the API Gateway:
 
 ```text
-controller
-↓
-service
-↓
-domain / repository
-↓
-database
+Angular Web Frontend
+Flutter Mobile Frontend
+        |
+api-gateway
+        |
+api-core / api-fetcher
+        |
+database / external systems
 ```
 
-Controllers depend on services to execute application operations.
+The `api-gateway` does not contain business logic. It exposes public routes and forwards requests to the proper internal service.
 
-Services coordinate the backend logic and may depend on domain repositories, DTOs, configuration elements, and integration packages.
+The `api-core` service contains the main application logic and may depend on repositories, DTOs, configuration classes, Cineca/Esse3 adapters, email providers, and event-publishing components.
 
-Domain entities and repositories represent the persistent data managed by the backend.
+The `api-fetcher` service contains scheduled jobs and services for external data retrieval, such as timetables, statistics, and professional-register data.
 
-For external university data, the dependency direction is:
+For academic data, the dependency direction is:
 
 ```text
-service
-↓
-cineca
-↓
+api-core service
+        |
+cineca adapter
+        |
 external Cineca/Esse3 system
 ```
 
-The `cineca` package isolates external system communication and prevents controllers and domain packages from depending directly on Cineca/Esse3 details.
+For fetched external data, the dependency direction is:
 
-The `dto` package is used across the controller and service layers to exchange API data without exposing internal domain structures.
+```text
+api-fetcher service
+        |
+fetcher jobs
+        |
+external data sources
+```
 
-The `config` package provides shared configuration and security support used by the backend packages.
-
-This organization keeps the backend modular, separates REST APIs from application logic, and isolates persistence and external integrations.
-
+This organization keeps frontend clients isolated from backend internals and external systems while preserving a clear separation between routing, application logic, data fetching, persistence, and infrastructure.
 
 
 ## Overall Package Dependencies

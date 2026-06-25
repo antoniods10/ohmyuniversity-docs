@@ -220,3 +220,18 @@ This package contains the Data Transfer Objects (DTO). They are solution objects
   - `prenotazioneId: Long` - ID of the created booking (null if booking failed)
 - **Operations:**
   - Automatically generated getter and setter methods for attribute access.
+
+---
+
+## Additional DTO Groups
+
+In addition to the DTOs described above, the current backend implementation includes DTOs for the following areas:
+
+- **Career and student administration:** appelli from transcript, bookable exam sessions, existing bookings, exam history, questionnaires, tuition fees, student profile, profile photo metadata, career information, and suggested exams.
+- **Calendar:** personal calendar event requests, personal calendar event responses, and university event responses.
+- **Email:** inbox responses, message-detail responses, and send-message requests.
+- **External services:** university configuration and service-link responses.
+- **Fetcher:** timetable responses, enrollment statistics, graduation statistics, first-year enrollment statistics, professional-register responses, and completion-rate indicators.
+
+These DTOs keep backend responses stable for Web and Mobile clients and prevent frontend applications from depending directly on internal entities or external payload structures.
+

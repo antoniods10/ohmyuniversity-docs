@@ -110,3 +110,24 @@ This package contains the backend's business logic. It coordinates controllers, 
     - **Pre-conditions:** None.
     - **Post-conditions:** Returns a unique refresh token string suitable for persistent storage in Redis.
     - **Exceptions:** No exceptions; generation should always succeed.
+
+---
+
+## Additional Backend Services
+
+The current backend implementation also includes additional service classes that extend the first version of the ODD.
+
+### API Core Services
+
+- **CalendarService** - manages personal calendar events and university event imports.
+- **CinecaSyncService** - tracks synchronization state related to Cineca/Esse3 data.
+- **EmailService** - coordinates institutional email connection, inbox retrieval, message details, and message sending.
+- **MicrosoftEmailProvider** - implements provider-specific communication for Microsoft-based institutional email services.
+- **KafkaEventPublisher** - publishes structured backend events when asynchronous communication is required.
+
+### API Fetcher Services
+
+- **TimetableService** - exposes timetable data collected by the fetcher service.
+- **StatisticheService** - exposes university statistics collected from external datasets.
+- **OrdineProfessionaleService** - exposes professional-register information collected by the fetcher service.
+
