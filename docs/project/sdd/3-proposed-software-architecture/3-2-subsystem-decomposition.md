@@ -26,31 +26,62 @@ head:
 
 ## Architectural Approach and Heuristics
 
-The OhMyUniversity! system has been decomposed into subsystems following a layered architecture based on the Multi-layer / 3-tier pattern. The architecture is logically divided into Presentation, Application Logic, Caching & Database, and External Services layers.
+The OhMyUniversity! backend is decomposed at two levels, kept explicitly distinct throughout this
+section:
 
-The primary engineering goal of this decomposition is to manage system complexity by ensuring **high cohesion** and **low coupling** among modules.
+1. **Services** (independently deployed): `api-core`, `api-gateway`, `api-fetcher` are implemented
+   and connected end-to-end. A Classroom service and a Transportation service have already been
+   scaffolded as independent modules following the same pattern as `api-core`, but are not yet
+   wired into the frontend and are not part of the system's current externally observable
+   behavior.
+2. **Logical modules** (within `api-core`): to manage complexity inside `api-core` itself, its
+   responsibilities are grouped into cohesive modules. These are packages in the same Spring Boot
+   application—not separate processes, not independently deployable, and not independently
+   scalable.
 
-- **High Cohesion:** Elements within the same subsystem are strongly related and collaborate towards a common, specific purpose. For instance, functionalities related to the academic career, exams, and degree planning have been grouped into a single highly cohesive subsystem.
-- **Low Coupling:** Subsystems are designed to be as independent as possible, minimizing the dependencies and interactions across module boundaries. To achieve this, the architecture introduces a **Main API Gateway** within the application logic: the client applications do not need to know the specific addresses of the internal services, as the Gateway acts as a single entry point and routes the requests.
+The primary engineering goal of this decomposition is to manage complexity by ensuring **high
+cohesion** and **low coupling**.
 
-Furthermore, we applied key software engineering heuristics, such as grouping by use cases and actor responsibilities. For instance, we separated the `Portal & Social Service` (dedicated to student interactions and university news) from the `Partner Convention Service` (dedicated to corporate partners and job offers). Finally, to avoid a direct, strongly coupled access to third-party APIs (like CINECA, Esse3, or Moodle), an `External Integration Gateway` acts as an external proxy.
+- **High Cohesion:** elements within the same module are strongly related and collaborate toward a
+  common purpose—for instance, everything related to the Esse3 career integration (career, exams,
+  fees, profile) is grouped together.
+- **Low Coupling:** `api-gateway` is the single entry point for client applications, which never
+  address backend services directly. Within `api-core`, the Esse3 integration is itself isolated
+  behind a dedicated client layer (`cineca/esse3/*`), so that the rest of the application never
+  calls third-party APIs directly.
 
-## Subsystem Decomposition Table
+## Service-Level Decomposition
 
-| #     | Subsystem                          | Layer (Tier)       | Responsibility                                                                                                                                                     | Domain Classes                                                                                                                                                                                           | FR Covered                                                        |
-| :---- | :--------------------------------- | :----------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------- |
-| **1** | **Presentation & UI App**          | Presentation Layer | Manages the multi-platform user interface (Mobile, Web, Desktop), intuitive dashboards, and captures input from both students and partners.                        | (All _Boundary / View_ classes)                                                                                                                                                                          | All FRs (Visual access point)                                     |
-| **2** | **Main API Gateway**               | Application Logic  | Acts as the single entry point for the frontend, routing incoming REST requests to the appropriate internal services.                                              | (All _Gateway / Router_ classes)                                                                                                                                                                         | _N/A (Infrastructure & Routing)_                                  |
-| **3** | **Auth & User Session Service**    | Application Logic  | Handles secure user authentication via government gateways (SPID/CIE), RBAC controls, and maintains active sessions.                                               | `UniversityUser`, `Student`, `UserSession`                                                                                                                                                               | _N/A (Satisfies security non-functional requirements)_            |
-| **4** | **Academic & Secretarial Service** | Application Logic  | Calculates grade averages, tracks CFUs, projects base graduation grades, manages exam bookings, notices, tuition fees, and evaluates Master's degree requirements. | `AcademicCareer`, `Exam`, `StudyPlan`, `Course`, `ExamSession`, `ExamBooking`, `AdministrativeDocument`, `TuitionFee`, `DigitalBadge`, `MasterDegreeProgram`, `AdmissionRequirement`, `OrientationGuide` | FR-1.1.1 to 1.1.9, FR-1.2.4, FR-1.4.1 to 1.4.3                    |
-| **5** | **Campus & Logistics Service**     | Application Logic  | Manages didactic materials, classroom availability and bookings, integrated calendar, maps/transportation, attendance, and canteen menus.                          | `Classroom`, `ClassroomBooking`, `CanteenMenu`, `MealOrder`, `DidacticMaterial`, `CalendarEvent`, `AttendanceRecord`                                                                                     | FR-1.3.1 to 1.3.8                                                 |
-| **6** | **Portal & Social Service**        | Application Logic  | Aggregates University News, manages quick access configurations, and provides the internal chat system for students.                                               | `NoticeboardItem`, `ChatMessage`                                                                                                                                                                         | FR-1.5.1, FR-1.5.2, FR-1.5.3                                      |
-| **7** | **Partner Convention Service**     | Application Logic  | Manages partner organization registrations and provides private dashboards for corporate partners to publish conventions and job offers.                           | `PartnerOrganization`, `NoticeboardItem` (Promos)                                                                                                                                                        | FR-1.6.1, FR-1.6.2                                                |
-| **8** | **External Integration Gateway**   | External Services  | Acts as a Proxy/Adapter orchestrating API calls to third-party systems (Cineca, Moodle, Map Providers) and ensuring proper data formatting.                        | (All _Adapter / Facade_ classes for external systems)                                                                                                                                                    | FR-1.2.1, FR-1.2.2, FR-1.2.3                                      |
-| **9** | **Data & Caching Layer**           | Caching & Database | Manages local data persistence and caching (e.g., Redis) to provide high fault tolerance in the absence of network connectivity.                                   | (All _Entity_ classes saved locally / Cache)                                                                                                                                                             | _N/A (Satisfies NFR-3.3.2 Reliability and NFR-3.3.3 Performance)_ |
+| Service | Status | Responsibility |
+|---|---|---|
+| **api-gateway** | Implemented, connected | Single entry point for client applications. Routes requests, enforces JWT-based authentication at the edge. |
+| **api-core** | Implemented, connected | Central hub: authentication, Esse3 integration, calendar, email, and the single publisher of domain events to Kafka. |
+| **api-fetcher** | Implemented, connected | Batch ingestion of external/public datasets (MUR statistics, professional orders, timetable sources), independent of user-driven traffic. |
+| **Classroom service** | Scaffolded, not yet integrated | Intended to own classroom availability and booking. Not reachable from the frontend in the current sprint. |
+| **Transportation service** | Scaffolded, not yet integrated | Intended to own maps/transportation features. Not reachable from the frontend in the current sprint. |
+
+## Logical Module Decomposition (within `api-core`)
+
+| # | Module | Responsibility | Domain Classes | FR Covered |
+|---|---|---|---|---|
+| **1** | **Auth Module** | Verifies institutional credentials against Esse3, issues the OMU JWT and refresh token, creates/links the local `OmuUser` profile on first login (linked across careers via fiscal code). | `OmuUser`, `UniversityConnection` | NFR Authentication (see 3.5) |
+| **2** | **Esse3 Integration Module** | Isolates all outbound calls to Esse3 (career, exams, fees, profile) behind a dedicated client layer; normalizes responses into DTOs for the rest of the application. Covers **consultation/read paths**: career sync, grades, ECTS, viewing exam sessions and existing bookings, fees, profile. Does **not** yet cover creating a new exam booking with overbooking protection (see SDD 3.6 roadmap). | (Esse3 client/DTO classes) | FR-1.1.1 to FR-1.1.6, FR-1.1.8, FR-1.1.9, FR-1.2.4 (read paths); FR-1.1.7 partially (consultation only) |
+| **3** | **Agenda Module** | Manages the integrated calendar: imported university events plus user-created events. The calendar is shared across all of a student's university enrollments—events are tied to the OMU user identity, not to a specific career, so switching active career (via `switch-carriera`) does not change which calendar events are visible. | `CalendarEvent` (personal), `UniversityEvent` (university-published), `CalendarEventImport` (bridge tracking which university events a student has imported, with a uniqueness constraint preventing duplicate imports), `CalendarEventType` | FR-1.3.4 |
+| **4** | **Email Module** | Provides access to the institutional email inbox and sending capability. | (Email DTOs) | FR-1.2.2 |
+| **5** | **Sync Module** | Runs the scheduled background synchronization with Esse3, independent of any single user session; publishes domain events to Kafka when new data is discovered. | `CinecaSyncState` | RAD 3.3.2 (Reliability) |
+
+> **Not yet implemented as `api-core` modules:** classroom booking and transportation logic live
+> in the scaffolded services listed above, not inside `api-core`. A chat module and a
+> partner/conventions module are part of the functional requirements (RAD FR-1.5.3, FR-1.6.1,
+> FR-1.6.2) but have no corresponding implementation yet; they are listed here for traceability
+> only and should not be read as existing code.
+>
+> | Planned module | Responsibility (per RAD) | FR Covered |
+> |---|---|---|
+> | Portal/Chat Module | University news board, quick access configuration, chat between users | FR-1.5.1, FR-1.5.2, FR-1.5.3 |
+> | Partner Convention Module | Partner registration requests, admin provisioning, conventions/job postings | FR-1.6.1, FR-1.6.2 |
 
 ## UML Component Diagram
 
-The following component diagram illustrates the static structure of the system at _design-time_, highlighting the main software modules, their interfaces, and their mutual dependencies.
-
-![Component Diagram OhMyUniversity](/diagrams/ComponentDiagramUML.webp)
+> **[In progress]** — to be redrawn to reflect the service/module split above (the previous
+> diagram depicted the logical modules as if they were independently deployed services).

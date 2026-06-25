@@ -26,9 +26,22 @@ head:
 
 ## Overview
 
-This section presents the **proposed software architecture** for the OhMyUniversity! system, describing how the system's complexity is managed through a layered, modular design. The architecture is built on principles of high cohesion and low coupling, utilizing a multi-tier pattern to clearly separate concerns across Presentation, Application Logic, Data & Caching, and External Services layers.
+This section presents the **proposed software architecture** for the OhMyUniversity! system. The
+architecture has two distinct levels of decomposition, and the rest of this chapter keeps them
+explicitly separate:
 
-The proposed architecture translates the functional and non-functional requirements into a concrete design that guides implementation across all platforms (Mobile, Web, Desktop) and ensures scalability, maintainability, and reliability.
+- **Service level (deployment):** the system is composed of independent, separately deployed
+  services. Three are implemented and connected end-to-end today—`api-core`, `api-gateway`,
+  `api-fetcher`—and two additional domain services (Classroom booking, Transportation) have been
+  scaffolded as independent modules but are not yet wired into the frontend (see SDD 1.1).
+- **Module level (internal decomposition):** within `api-core`, responsibilities are further
+  organized into cohesive logical modules (e.g. Auth, Academic/Career, Campus, Portal, Partner).
+  These modules are **not** separately deployed services; they are packages within the same
+  Spring Boot application, sharing the same process, database connection pool, and Kafka producer.
+
+The architecture follows a multi-tier pattern (Presentation, Application Logic, Data & Caching,
+External Integration) to separate concerns, built on the engineering principles of high cohesion
+and low coupling described in 3.2.
 
 ---
 
@@ -36,24 +49,34 @@ The proposed architecture translates the functional and non-functional requireme
 
 ### 3.2 Subsystem Decomposition
 
-Describes the decomposition of the OhMyUniversity! system into manageable, highly cohesive, and loosely coupled subsystems. This section details the nine primary subsystems, their responsibilities, domain classes, and how they are distributed across the multi-tier architecture. Includes the Component Diagram showing static module relationships.
+Describes the decomposition of `api-core` into cohesive, loosely coupled logical modules, their
+responsibilities, domain classes, and how they relate to the deployed services (`api-core`,
+`api-gateway`, `api-fetcher`, and the scaffolded Classroom/Transportation services). Includes the
+Component Diagram showing static module relationships.
 
 ### 3.3 Hardware-Software Mapping
 
-Presents the mapping between the logical software architecture and the physical hardware deployment. Details the distribution of components across different nodes, network interactions, and deployment topology.
+Presents the mapping between the logical software architecture and the physical/deployment
+environment as it exists today, separating what is currently running from infrastructure that is
+planned but not yet implemented (cloud deployment, orchestration).
 
 ### 3.4 Persistent Data Management
 
-Covers the data persistence strategy, database schema design, data models, and caching mechanisms. Explains how data is stored, retrieved, and cached to ensure system reliability and performance.
+Covers the data persistence strategy: what is stored in PostgreSQL, what is cached in Redis and
+why, and what is planned for MongoDB once the chat feature is implemented.
 
 ### 3.5 Access Control and Security
 
-Describes the security architecture, including authentication mechanisms (SPID/CIE integration), authorization strategies (RBAC), data protection measures, and secure communication protocols.
+Describes the authentication mechanism actually in place today (institutional credentials verified
+against Esse3), the roles currently able to authenticate, and which role-based capabilities are
+implemented versus planned.
 
 ### 3.6 Global Software Control
 
-Details the global control flow, system initialization, shutdown procedures, error handling, and exception management strategies across the entire system.
+Details the global control flow: event-driven client interactions and thread-based backend
+concurrency, expressed in terms of the modules defined in 3.2.
 
 ### 3.7 Boundary Conditions
 
-Addresses the system's behavior at boundary conditions, including startup, shutdown, restart, and recovery procedures. Covers how the system handles edge cases and failure scenarios.
+Addresses the system's behavior at boundary conditions, including startup, shutdown, restart, and
+recovery procedures.

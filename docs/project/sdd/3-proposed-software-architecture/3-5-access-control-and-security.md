@@ -26,34 +26,77 @@ head:
 
 ## Authentication Mechanisms
 
-The system handles user identity through a dual-flow authentication architecture, completely separating institutional users from external corporate entities.
+Today, OhMyUniversity! has a single authentication mechanism for institutional users (students and
+professors): the user submits their institutional credentials, which are verified against
+**Esse3**. On success, `api-core` issues a short-lived **JWT** (90 minutes) and a **refresh
+token**; the client refreshes the JWT before expiry without requiring the user to re-enter
+credentials. On first successful login, a local `OmuUser` profile is created and linked to the
+corresponding Esse3 career(s) via fiscal code, allowing a single student with multiple careers
+(e.g. Bachelor's and Master's) to be recognized as one OMU identity.
 
-- **Institutional Authentication (Students & Staff):** University students, academic staff (Professors), and administrative staff (University Administrators) have two seamless options to authenticate. They can log in using the national Identity Providers (**SPID and CIE**) via standard protocols like OpenID Connect (OIDC) or SAML. Alternatively, they can use their standard **Institutional Credentials (Email and Password)** directly linked to their official university portal (via LDAP or Single Sign-On). The system acts as a secure pass-through and does not store these passwords locally, ensuring full compliance with GDPR Article 32.
-- **Corporate Authentication (Partners):** Corporate partners do not possess institutional accounts and they cannot self-register. Their accounts are exclusively provisioned and created by the OhMyUniversity! **System Administrators**. Access to the platform is tied to a subscription model: the account is set to an **Active** state upon payment of the monthly fee, granting full access to the partnership tools. If the monthly fee is unpaid, the account is immediately switched to a **Disabled** state, revoking operational access.
+There is currently no separate username/password store, no LDAP integration, and no second-factor
+authentication mechanism—the system has no local credentials to protect, since Esse3 remains the
+sole identity source.
 
-## Authorization and Role-Based Access Control (RBAC)
+> **Roadmap (not yet implemented):** SPID/CIE as an additional or primary authentication method,
+> per AgID guidelines (SDD 1.4). When introduced, it would coexist with—not replace—the existing
+> Esse3-backed login.
 
-To govern permissions, the system implements a strict Role-Based Access Control (RBAC) model. The authorization logic is enforced by the _Auth & User Session Service_ before any request is routed to the internal business logic.
+Corporate partners follow a separate flow, unrelated to Esse3: they cannot self-register and gain
+immediate access. A registration request is submitted and held in a pending state until a System
+Administrator reviews and provisions the account (RAD: Partner Provisioning). Once active, the
+account's status is tied to the partnership subscription.
 
-Following the principles of Object-Oriented System Design, permissions are formalized using a **Global Access Matrix** mapped directly to the core Domain Classes (or aggregates of similar domain objects). The matrix defines the exact operations (`Read`, `Write`, `Delete`, `Approve`, `None`) that each actor can perform on these entities.
+## Authorization
 
-## Global Access Matrix (Domain Object Level)
+Both students and professors can authenticate today, since both hold an Esse3 institutional
+identity. However, **no application functionality is currently implemented specifically for the
+Professor role**—professors can log in, but the features described in the functional requirements
+(career view, exam booking, calendar, etc.) are built and exposed for the Student role only. Any
+professor-facing capability (e.g. managing exam sessions, publishing didactic material) is a
+planned extension, not a current capability, and is marked as such in the matrix below.
 
-| Actor / Role                        | `UserProfile` / `PartnerOrg`         | `AcademicCareer` / `ExamSession` | `ClassroomBooking`                   | `NoticeboardItem` / `DidacticMaterial`       | `ChatMessage`                   |
-| :---------------------------------- | :----------------------------------- | :------------------------------- | :----------------------------------- | :------------------------------------------- | :------------------------------ |
-| **University Student**              | `Read`, `Write` (Own)                | `Read` (Own data only)           | `Read` (View only)                   | `Read`                                       | `Read`, `Write`, `Delete` (Own) |
-| **University Professor**            | `Read`, `Write` (Own)                | `Read` (Sessions)                | `Read`, `Write`                      | `Read`, `Write`, `Delete` (Own courses)      | `Read`, `Write`, `Delete` (Own) |
-| **University Staff (Ateneo)**       | `Read`                               | `Read` (Support view)            | `Read`, `Approve`, `Write`, `Delete` | `Read`, `Write`, `Delete` (Official notices) | `None` (Privacy restriction)    |
-| **OhMyUniversity! System Admin**    | `Read`, `Write`, `Approve`, `Delete` | `None` (Privacy restriction)     | `None`                               | `Read`, `Delete` (Platform Moderation)       | `None` (Privacy restriction)    |
-| **Corporate Partner (Active)**      | `Read`, `Write` (Own)                | `None`                           | `Read`, `Write`                      | `Read`, `Write`, `Delete` (Own promos)       | `Read`, `Write`                 |
-| **Corporate Partner (Disabled)**    | `Read` (Own Profile)                 | `None`                           | `None`                               | `None` (Subscription expired)                | `None`                          |
-| **External Systems (Cineca/Esse3)** | `None`                               | `Write` (Sync source of truth)   | `None`                               | `None`                                       | `None`                          |
+## Global Access Matrix (Domain Object Level) — Implemented
 
-_Note on Administration:_
+| Actor / Role | `OmuUser` / `UniversityConnection` | Esse3-derived data (Career, Exams, Fees) | `CalendarEvent` | `PartnerOrganization` |
+|---|---|---|---|---|
+| **Student** | Read, Write (own) | Read (own, via Esse3 sync) | Read, Write (own) | Read |
+| **Professor** *(login only — no dedicated features implemented)* | Read, Write (own) | Read (own, via Esse3 sync) | — | — |
+| **OhMyUniversity! System Admin** | Read | None (no access to academic records) | None | Read, Write, Approve (provisioning) |
+| **Corporate Partner (Active)** | Read, Write (own profile) | None | None | Read, Write (own) |
+| **Corporate Partner (Pending/Disabled)** | Read (own profile) | None | None | None |
+| **External System (Esse3)** | None | Source of truth (read by `api-core`) | None | None |
 
-- _The **University Staff** represents the institutional administrative core of the university. They handle campus logistics (`ClassroomBooking`) and the publication of official university communications (`NoticeboardItem`), but they do not manage the platform's subscriptions._
-- _The **OhMyUniv! System Admin** represents the technical maintainers of the platform. They hold broad privileges for provisioning Corporate Partner accounts (`Approve`/`Write` on `PartnerOrg`) and moderating content, but strictly do not have access to academic records or private chats._
+## Global Access Matrix — Roadmap (planned, not yet implemented)
+
+The original access control design anticipated additional roles and entities tied to the Classroom
+booking, Chat, and Partner Convention modules (SDD 3.2), none of which are implemented today. The
+matrix below is preserved as the original design intent and should be honored/revisited once those
+modules are built, rather than treated as current system behavior:
+
+| Actor / Role | `ClassroomBooking` | `NoticeboardItem` / `DidacticMaterial` | `ChatMessage` |
+|---|---|---|---|
+| **Student** | Read (view only) | Read | Read, Write, Delete (own) |
+| **Professor** | Read, Write | Read, Write, Delete (own courses) | Read, Write, Delete (own) |
+| **University Staff (Ateneo)** | Read, Approve, Write, Delete | Read, Write, Delete (official notices) | None (privacy restriction) |
+| **OhMyUniversity! System Admin** | None | Read, Delete (platform moderation) | None (privacy restriction) |
+| **Corporate Partner (Active)** | Read, Write | Read, Write, Delete (own promos) | Read, Write |
+| **Corporate Partner (Disabled)** | None | None (subscription expired) | None |
+
+> **Note on roles:** **University Staff (Ateneo)** represents the institutional administrative
+> core of the university, handling campus logistics (`ClassroomBooking`) and official university
+> communications (`NoticeboardItem`), without managing platform subscriptions. This role does not
+> exist in the system today—there is no corresponding login or permission model implemented for
+> it; it is introduced here only as part of the original roadmap design.
 
 ## Data in Transit Security
 
-All communications between the Multi-platform Client Applications (Flutter/Angular) and the API Gateway, as well as the external API calls orchestrated by the External Integration Gateway (towards Cineca, Moodle, and Map Providers), are heavily encrypted in transit using the HTTPS/TLS 1.3 protocol. This prevents Man-In-The-Middle (MITM) attacks and ensures the confidentiality of academic records during synchronization.
+Communication between the client applications (Flutter/Angular) and `api-gateway`, and between
+`api-core` and Esse3, uses HTTPS/TLS. No further claims are made here about specific TLS versions
+or cipher suites beyond what has been verified in the actual configuration.
+
+> **Roadmap:** the original design anticipated the same HTTPS/TLS protection extending to calls
+> toward Moodle and map/transportation providers, orchestrated through a dedicated external
+> integration layer. Today there are no such calls to protect—Moodle is only a link (SDD 1.1) and
+> the Transportation service is not yet connected (SDD 3.2)—but the same protection should apply
+> to those calls once they exist.
