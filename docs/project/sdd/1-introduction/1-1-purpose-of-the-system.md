@@ -1,13 +1,13 @@
 ---
 title: SDD - 1.1 Purpose of the System | OhMyUniversity!
-description: OhMyUniversity is a distributed, multi-platform student portal that centralizes access to fragmented university data through microservices architecture, ensuring data integrity, performance, and scalability.
+description: OhMyUniversity is a multi-platform student portal that centralizes access to fragmented university data through a service-based backend, ensuring data integrity, performance, and scalability.
 head:
   - - meta
     - property: og:title
       content: SDD - 1.1 Purpose of the System | OhMyUniversity!
   - - meta
     - property: og:description
-      content: OhMyUniversity is a distributed, multi-platform student portal that centralizes access to fragmented university data through microservices architecture, ensuring data integrity, performance, and scalability.
+      content: OhMyUniversity is a multi-platform student portal that centralizes access to fragmented university data through a service-based backend, ensuring data integrity, performance, and scalability.
   - - meta
     - property: og:url
       content: https://docs.university.ohmyopensource.org/project/sdd/1-introduction/1-1-purpose-of-the-system
@@ -33,7 +33,7 @@ frontend developers, and DevOps engineers.
 
 ### The Problem
 
-Today, students navigate 5-7 separate portals (Esse3, Moodle, Email, Library, Canteen, etc.)
+Today, students navigate multiple separate portals (Esse3, Moodle, email, library, canteen, etc.)
 to access information spread across different systems. This fragmentation causes:
 
 - **Manual re-entry** of data (grade averaging, progress calculation)
@@ -42,18 +42,38 @@ to access information spread across different systems. This fragmentation causes
 
 ### The Solution
 
-OhMyUniversity! provides a **unified backend** composed of multiple independent microservices
-that aggregate data from institutional SaaS platforms (Cineca, Moodle, Email), enabling:
+OhMyUniversity! provides a **service-based backend** that aggregates data from institutional
+platforms (primarily Cineca/Esse3) and exposes it through a unified, student-centric interface,
+enabling:
 
-- **Multi-Platform Access** (Web, Mobile, Desktop) with a single authentication
-- **Intelligent Automation** (real-time data sync, automatic calculations, caching)
-- **Scalability** (independent microservice scaling based on load)
+- **Multi-Platform Access** (Web, Mobile) with a single authentication
+- **Intelligent Automation** (data sync, automatic calculations, caching)
+- **Independent Service Scaling** (new domains can be added as standalone services)
 - **Strategic Tools** (Master's requirements tracking, career planning)
 
 ### Architectural Approach
 
 OhMyUniversity! acts as an **advanced middleware layer** that orchestrates data from external
-university systems (Cineca/Esse3, GOMP, Moodle) into a unified, student-centric interface.
-The system is NOT a replacement for institutional systems—it aggregates and normalizes data,
-allowing students to interact with a single point of entry while maintaining integrity with
-official university records.
+university systems (primarily Cineca/Esse3) into a unified, student-centric interface. The system
+is **NOT a replacement** for institutional systems—it aggregates and normalizes data, allowing
+students to interact with a single point of entry while maintaining integrity with official
+university records.
+
+The backend is composed of independent services rather than a single monolith. At the current
+stage of development, three services are implemented and connected end-to-end:
+
+- **api-core**: the central hub. It owns authentication, the Cineca/Esse3 integration, calendar
+  and email features, and is the single point of publication of domain events.
+- **api-gateway**: routes client requests to the appropriate backend service and enforces JWT-based
+  request authentication at the edge.
+- **api-fetcher**: a batch-oriented service that ingests external/public datasets (e.g. MUR
+  statistics, professional orders registries, timetable sources) on a schedule, independent of
+  user-driven traffic.
+
+Additional domain services for **classroom booking** and **transportation** have already been
+scaffolded as independent modules, following the same architectural pattern as `api-core`. They
+are not yet wired into the frontend and are planned for integration in a future sprint; until
+then, they are not part of the system's externally observable behavior.
+
+Moodle is referenced by the system only as an **external link** surfaced in the "Portals" section
+of the client applications—OhMyUniversity! does not synchronize or aggregate data from Moodle.
