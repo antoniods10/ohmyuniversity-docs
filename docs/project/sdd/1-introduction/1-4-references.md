@@ -33,6 +33,8 @@ This section lists documents, standards, and regulatory frameworks that inform a
 | Document | Location | Purpose |
 |----------|----------|---------|
 | **Requirements Analysis Document (RAD)** | `docs/project/rad/` | Functional & non-functional requirements, system scope, design goals constraints |
+| **Object Design Document (ODD)** | `docs/project/odd/` | Detailed object design (classes, interfaces, packages) that refines the architecture defined in this SDD |
+| **Quality Plan** | `docs/project/quality-plan/` | Process description, product plans, quality goals, and risk management constraints applicable to the design |
 
 ---
 
@@ -43,7 +45,15 @@ This section lists documents, standards, and regulatory frameworks that inform a
 | **GDPR (EU Regulation 2016/679)** | Mandatory (EU/Italian) | https://gdpr-info.eu/ |
 | **IEEE Standard 830-1998** | SDD Documentation Structure | https://standards.ieee.org/standard/830-1998.html |
 | **AgID Guidelines** | Italian Government Mandate for Digital Services | https://www.agid.gov.it/ |
-| **SPID Technical Specification** | Italian Digital Identity System | https://www.agid.gov.it/it/agenzia/competenze/spid |
+| **SPID Technical Specification** | Italian Digital Identity System — reference for a **future** authentication method, not yet implemented | https://www.agid.gov.it/it/agenzia/competenze/spid |
 | **WCAG 2.1 Level AA** | Web Content Accessibility | https://www.w3.org/WAI/WCAG21/quickref/ |
+
+---
+
+## Technical Documentation (External Systems)
+
+| Document | Applicability | Reference |
+|----------|---------------|-----------|
+| **Cineca/Esse3 Technical Documentation** | Currently the only integrated career data source; basis for the `api-core` Esse3 client and authentication flow | Official CINECA developer documentation (institutional access) |
 
 ---

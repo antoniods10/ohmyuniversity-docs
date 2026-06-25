@@ -32,11 +32,11 @@ This section provides the foundational context for the entire Software Design Do
 
 ## 1.1 Purpose of the System
 
-Describes the fundamental purpose and vision of OhMyUniversity!: a unified, multi-platform student portal that centralizes access to fragmented university data. Details the problem OhMyUniversity! solves, the target users (Italian university students), initial deployment scope (UNIMOL), and the distributed microservices architecture approach.
+Describes the fundamental purpose and vision of OhMyUniversity!: a multi-platform student portal that centralizes access to fragmented university data. Details the problem OhMyUniversity! solves, the target users (Italian university students), initial deployment scope (UNIMOL), and the service-based architecture approach—currently three services implemented and connected end-to-end (`api-core`, `api-gateway`, `api-fetcher`), with additional domain services already scaffolded for future integration.
 
 ## 1.2 Design Goals
 
-Defines the prioritized, measurable design goals that drive all architectural decisions. Covers critical objectives including Data Integrity, Performance, Reliability, Usability, Scalability, Maintainability, Security & Authentication, and Legal Compliance. Includes explicit trade-off analysis and resolutions for conflicting goals.
+Defines the prioritized, measurable design goals that drive all architectural decisions. Covers critical objectives including Data Integrity, Performance, Reliability, Usability, Scalability, Maintainability, Authentication, and Legal Compliance. Includes explicit trade-off analysis and resolutions for conflicting goals, and clearly separates currently implemented decisions from planned future evolutions (e.g. SPID/CIE login, cloud deployment).
 
 ## 1.3 Definitions, Acronyms, and Abbreviations
 
@@ -44,4 +44,4 @@ Provides a comprehensive glossary of key terms, acronyms, and abbreviations used
 
 ## 1.4 References
 
-Lists external documents, standards, frameworks, and resources referenced in this SDD, including related project documentation (RAD, ODD, Test Plan), standards, and external systems (CINECA, Moodle, SPID/CIE).
+Lists internal project documentation (RAD, ODD, Quality Plan), regulatory and compliance standards (GDPR, AgID, WCAG, SPID), and technical documentation for currently integrated external systems (Esse3).

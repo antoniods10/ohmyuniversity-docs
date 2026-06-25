@@ -41,21 +41,28 @@ guaranteeing ACID transactions and the ability to handle concurrent access.
   `CinecaSyncState` (bookkeeping for the background sync process). `api-fetcher` maintains its own
   PostgreSQL schema for batch-ingested datasets (MUR statistics, professional orders, timetable
   links).
-- **What is NOT stored:** official academic records (grades, study plans, tuition fee amounts).
-  These remain the responsibility of Esse3; OhMyUniversity reads them on demand (through the cache
-  described below) but never becomes their system of record.
+- **What is NOT stored:** official academic records (grades, study plans, exam sessions/bookings,
+  profile data, tuition fee amounts). These remain the responsibility of Esse3. Most of this data
+  (career, exams, profile) is read live on every request with no local caching; fee-related data
+  specifically passes through the Redis cache described below. In neither case does OhMyUniversity
+  become the system of record for this data.
 
 ## 2. In-Memory Store (Redis) — implemented
 
 Redis serves two distinct purposes in `api-core`; they are kept conceptually separate even though
 they share the same Redis instance.
 
-- **Esse3 response cache:** caches responses from the Esse3 client layer (career, exams, fees,
-  profile data) to avoid calling Esse3's APIs on every request, reducing latency and load on Esse3
-  and helping meet the < 2.0s sync target (SDD 1.2). Cached entries use a bounded, time-limited
-  expiration so that cached data—some of which is sensitive—never persists in Redis longer than
-  strictly necessary, in line with GDPR data minimization principles (RAD 3.3.8). PostgreSQL, not
-  Redis, remains the authoritative store for this data.
+- **Esse3 response cache:** caches responses from the Esse3 client layer to avoid calling Esse3's
+  APIs on every request, reducing latency and load on Esse3 and helping meet the < 2.0s sync target
+  (SDD 1.2). **Confirmed scope:** fee-related data (`FeesService` — fee status, invoices, refunds).
+  Cached entries use a bounded, time-limited expiration so that cached data—some of which is
+  sensitive—never persists in Redis longer than strictly necessary, in line with GDPR data
+  minimization principles (RAD 3.3.8). PostgreSQL, not Redis, remains the authoritative store for
+  this data.
+  **Explicitly not cached:** career, exams, and profile data (`CareerService`, `ExamsService`,
+  `ProfileService`) are fetched live from Esse3 on every request—their own documentation states
+  that nothing is persisted locally for these three services. This means the < 2.0s sync target
+  for these paths depends entirely on Esse3's own response time, not on a cache layer.
 - **Refresh token store:** the refresh token issued at login (separate from the short-lived JWT,
   see SDD 1.2/3.5) is held in Redis, not PostgreSQL. Logging out deletes the refresh token from
   Redis, immediately invalidating the ability to obtain a new JWT for that session.
